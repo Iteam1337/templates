@@ -48,7 +48,7 @@ const init = async () => {
       message: reset('Select a template:'),
       initial: 0,
       choices: templates.map((template) => ({
-        title: template.name,
+        title: template.color(template.name),
         value: template,
       })),
     },

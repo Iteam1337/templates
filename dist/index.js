@@ -107,19 +107,11 @@ var getTargetPath = (targetPath, fileName) => {
 
 // src/index.ts
 var cwd = process.cwd();
-function useState(initialState2) {
-  let state = Object.assign({}, initialState2);
-  const setState = (key, val) => {
-    state[key] = val;
-  };
-  return [state, setState];
-}
-var initialState = {
-  targetDir: ""
-};
 var init = () => __async(exports, null, function* () {
   var _a;
-  const [state, setState] = useState(initialState);
+  const state = {
+    targetDir: ""
+  };
   const templates = TEMPLATES.flatMap((f) => f.variants);
   let steps = [
     {
@@ -127,7 +119,7 @@ var init = () => __async(exports, null, function* () {
       name: "projectName",
       message: "Project name:",
       initial: "my-awesome-project",
-      onState: ({ value }) => setState("targetDir", value.trim())
+      onState: ({ value = "" }) => state.targetDir = value.trim()
     },
     {
       type: () => {
@@ -174,6 +166,6 @@ Finished! Now run:
   if (root !== cwd) {
     console.log(`  cd ${import_path3.default.relative(cwd, root)}`);
   }
-  console.log((0, import_kolorist2.lightMagenta)(installInstructionsByPkgManager(pkgManager)));
+  console.log(installInstructionsByPkgManager(pkgManager));
 });
 init().catch(({ message }) => console.error(message));
