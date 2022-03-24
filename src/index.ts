@@ -5,34 +5,14 @@ import { green, reset } from 'kolorist'
 
 import * as functions from './functions'
 import * as utils from './utils'
-import {
-  RENAMABLE_FILES_MAP,
-  TEMPLATES,
-  TEMPLATES_DIRECTORY,
-} from './constants'
+import { TEMPLATES, TEMPLATES_DIRECTORY } from './constants'
 
 const cwd = process.cwd()
 
-function useState<T>(initialState?: T): [T, (key: keyof T, val: any) => void] {
-  let state: T = Object.assign({}, initialState)
-
-  const setState = (key: keyof T, val: any) => {
-    state[key] = val
-  }
-
-  return [state, setState]
-}
-
-type State = {
-  targetDir: string
-}
-
-const initialState = {
-  targetDir: '',
-}
-
 const init = async () => {
-  const [state, setState] = useState<State>(initialState)
+  const state = {
+    targetDir: '',
+  }
 
   const templates = TEMPLATES.flatMap((f) => f.variants)
 
@@ -42,8 +22,7 @@ const init = async () => {
       name: 'projectName',
       message: 'Project name:',
       initial: 'my-awesome-project',
-      onState: ({ value }: { value: any }) =>
-        setState('targetDir', value.trim()),
+      onState: ({ value = '' }) => (state.targetDir = value.trim()),
     },
     {
       type: () => {
@@ -69,7 +48,7 @@ const init = async () => {
       message: reset('Select a template:'),
       initial: 0,
       choices: templates.map((template) => ({
-        title: template.color(template.name),
+        title: template.name,
         value: template,
       })),
     },

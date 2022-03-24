@@ -1,6 +1,6 @@
 export type Template = {
   name: string
-  color: any
+  color: (color: string | number) => string
   variants: TemplateVariant[]
 }
 
