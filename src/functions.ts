@@ -3,11 +3,14 @@ import path from 'path'
 
 export const copyDir = (srcDir: string, destDir: string) => {
   fs.mkdirSync(destDir, { recursive: true })
-  fs.readdirSync(srcDir).forEach((file) => {
+
+  const prepareAndCopy = (file: string) => {
     const srcFile = path.resolve(srcDir, file)
     const destFile = path.resolve(destDir, file)
     copy(srcFile, destFile)
-  })
+  }
+
+  fs.readdirSync(srcDir).forEach(prepareAndCopy)
 }
 
 export const write = (to: string, content: string) =>
