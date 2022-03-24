@@ -1,36 +1,17 @@
 import prompts from 'prompts'
 import fs from 'fs'
 import path from 'path'
-import functions from './functions'
-import * as types from './types'
+import { green, reset } from 'kolorist'
 
-import { yellow, green, cyan, blue, red, reset } from 'kolorist'
+import * as functions from './functions'
+import * as utils from './utils'
+import {
+  RENAMABLE_FILES_MAP,
+  TEMPLATES,
+  TEMPLATES_DIRECTORY,
+} from './constants'
 
 const cwd = process.cwd()
-
-const TEMPLATES_DIRECTORY = `${__dirname}/../templates`
-const RENAMABLE_FILES_MAP: { [key: string]: string } = {
-  _gitignore: '.gitignore',
-}
-
-const TEMPLATES: types.Template[] = [
-  {
-    name: 'react',
-    color: yellow,
-    variants: [
-      {
-        color: yellow,
-        name: 'react',
-        display: 'JavaScript',
-      },
-      {
-        color: blue,
-        name: 'react-ts',
-        display: 'TypeScript',
-      },
-    ],
-  },
-]
 
 function useState<T>(initialState?: T): [T, (key: keyof T, val: any) => void] {
   let state: T = Object.assign({}, initialState)
@@ -53,10 +34,7 @@ const initialState = {
 const init = async () => {
   const [state, setState] = useState<State>(initialState)
 
-  const templates = TEMPLATES.map((f) => f.variants).reduce(
-    (a, b) => a.concat(b),
-    []
-  )
+  const templates = TEMPLATES.flatMap((f) => f.variants)
 
   let steps: prompts.PromptObject[] = [
     {
@@ -78,13 +56,12 @@ const init = async () => {
       name: 'exitInvalidDir',
     },
     {
-      type: () =>
-        functions.isValidPackageName(state.targetDir) ? null : 'text',
+      type: () => (utils.isValidPkgName(state.targetDir) ? null : 'text'),
       name: 'packageName',
       message: reset('Package name:'),
-      initial: () => functions.toValidPackageName(state.targetDir),
+      initial: () => utils.toValidPackageName(state.targetDir),
       validate: (dir) =>
-        functions.isValidPackageName(dir) || 'Invalid package.json name',
+        utils.isValidPkgName(dir) || 'Invalid package.json name',
     },
     {
       type: 'select',
@@ -101,53 +78,42 @@ const init = async () => {
   const result = await prompts(steps)
 
   const root = path.join(cwd, state.targetDir)
-  fs.mkdirSync(root)
-
-  const templateDir = path.join(TEMPLATES_DIRECTORY, result.template.name)
   console.log(`\nScaffolding project in ${root}...`)
 
-  const getTargetPath = (targetPath: string, fileName: string) =>
-    path.join(targetPath, RENAMABLE_FILES_MAP[fileName] ?? fileName)
+  fs.mkdirSync(root)
+  const templateDir = path.join(TEMPLATES_DIRECTORY, result.template.name)
 
   fs.readdirSync(templateDir)
-    .filter(functions.isNotPackageJson)
+    .filter(utils.isNotPackageJson)
     .forEach((fileName) =>
       functions.copy(
         path.join(templateDir, fileName),
-        getTargetPath(root, fileName)
+        utils.getTargetPath(root, fileName)
       )
     )
 
   const packageJson = Object.assign(
-    require(path.join(templateDir, `package.json`)),
+    require(path.join(templateDir, 'package.json')),
     {
       name: result.packageName,
     }
   )
 
   functions.write(
-    getTargetPath(root, 'package.json'),
+    utils.getTargetPath(root, 'package.json'),
     JSON.stringify(packageJson, null, 2)
   )
 
-  const pkgInfo = functions.pkgFromUserAgent(process.env.npm_config_user_agent)
-  const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
+  const pkgManager =
+    utils.getPkgManagerFromUserAgent(process.env.npm_config_user_agent) ?? 'npm'
 
-  console.log(`\Finished!. Now run:\n`)
+  console.log(green(`\nFinished! Now run:\n`))
+
   if (root !== cwd) {
     console.log(`  cd ${path.relative(cwd, root)}`)
   }
 
-  switch (pkgManager) {
-    case 'yarn':
-      console.log('  yarn')
-      console.log('  yarn dev')
-      break
-    default:
-      console.log(`  ${pkgManager} install`)
-      console.log(`  ${pkgManager} run dev`)
-      break
-  }
+  console.log(utils.installInstructionsByPkgManager(pkgManager))
 }
 
 init().catch(({ message }) => console.error(message))
