@@ -36,10 +36,10 @@ var __async = (__this, __arguments, generator) => {
 };
 
 // src/index.ts
-var import_prompts = __toESM(require("../node_modules/prompts/index.js"));
+var import_prompts = __toESM(require("./node_modules/prompts/index.js"));
 var import_fs2 = __toESM(require("fs"));
 var import_path3 = __toESM(require("path"));
-var import_kolorist2 = require("../node_modules/kolorist/dist/cjs/index.js");
+var import_kolorist2 = require("./node_modules/kolorist/dist/cjs/index.js");
 
 // src/functions.ts
 var import_fs = __toESM(require("fs"));
@@ -60,7 +60,7 @@ var copy = (src, dest) => import_fs.default.statSync(src).isDirectory() ? copyDi
 var import_path2 = __toESM(require("path"));
 
 // src/constants.ts
-var import_kolorist = require("../node_modules/kolorist/dist/cjs/index.js");
+var import_kolorist = require("./node_modules/kolorist/dist/cjs/index.js");
 var TEMPLATES_DIRECTORY = `${__dirname}/../templates`;
 var RENAMABLE_FILES_MAP = {
   _gitignore: ".gitignore"

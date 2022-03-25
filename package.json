@@ -2,23 +2,23 @@
   "name": "create-templates",
   "version": "1.0.1",
   "description": "Iteam project templates with our preferred defaults and config",
-  "main": "dist/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Iteam1337/templates.git"
   },
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --external:./node_modules/*",
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=index.js --external:./node_modules/*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "create-templates": "dist/index.js"
+    "create-templates": "index.js"
   },
   "engines": {
     "node": ">=12.0.0"
   },
   "files": [
-    "dist/index.js",
+    "index.js",
     "templates/*"
   ],
   "keywords": [],
