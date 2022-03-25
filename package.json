@@ -1,6 +1,6 @@
 {
   "name": "@iteam/create-templates",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Iteam project templates with our preferred defaults and config",
   "main": "index.js",
   "repository": {

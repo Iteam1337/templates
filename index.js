@@ -5199,7 +5199,7 @@ var import_path2 = __toESM(require("path"));
 
 // src/constants.ts
 var import_kolorist = __toESM(require_cjs());
-var TEMPLATES_DIRECTORY = `${__dirname}/../templates`;
+var TEMPLATES_DIRECTORY = `${__dirname}/templates`;
 var RENAMABLE_FILES_MAP = {
   _gitignore: ".gitignore"
 };
