@@ -1,6 +1,6 @@
 {
   "name": "create-templates",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Iteam project templates with our preferred defaults and config",
   "main": "dist/index.js",
   "repository": {
@@ -14,6 +14,10 @@
   "bin": {
     "create-templates": "dist/index.js"
   },
+  "files": [
+    "dist/index.js",
+    "templates/*"
+  ],
   "keywords": [],
   "author": "Andreas Lundqvist <andreas.lundqvist@iteam.se>",
   "license": "ISC",
