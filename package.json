@@ -8,7 +8,7 @@
     "url": "https://github.com/Iteam1337/templates.git"
   },
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --platform=node --outfile=index.js --external:./node_modules/*",
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
@@ -26,12 +26,11 @@
   "license": "ISC",
   "dependencies": {
     "kolorist": "^1.5.1",
-    "minimist": "^1.2.5",
-    "prompts": "^2.4.2",
-    "typescript": "^4.6.2"
+    "prompts": "^2.4.2"
   },
   "devDependencies": {
     "@types/prompts": "^2.0.14",
-    "esbuild": "^0.14.27"
+    "esbuild": "^0.14.27",
+    "typescript": "^4.6.2"
   }
 }
