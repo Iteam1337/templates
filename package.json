@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "create-templates": "dist/index.js"
+    "create-templates2": "dist/index.js"
   },
   "keywords": [],
   "author": "Andreas Lundqvist <andreas.lundqvist@iteam.se>",
