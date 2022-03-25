@@ -14,6 +14,9 @@
   "bin": {
     "create-templates": "dist/index.js"
   },
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "files": [
     "dist/index.js",
     "templates/*"
