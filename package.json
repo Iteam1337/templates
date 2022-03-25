@@ -1,7 +1,7 @@
 {
-  "name": "templates",
+  "name": "@iteam/templates",
   "version": "1.0.0",
-  "description": "Iteam project templates with our preferred defaults.",
+  "description": "Iteam project templates with our preferred defaults and config",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
@@ -10,9 +10,6 @@
   "scripts": {
     "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --external:./node_modules/*",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "bin": {
-    "create-iteam": "dist/index.js"
   },
   "keywords": [],
   "author": "Andreas Lundqvist <andreas.lundqvist@iteam.se>",
