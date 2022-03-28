@@ -3,6 +3,7 @@
     "@iteam/eslint-config-react/typescript",
     "plugin:import/recommended"
   ],
+
   "rules": {
     "react/prop-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
