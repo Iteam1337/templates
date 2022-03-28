@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
+import react from '@vitejs/plugin-react'
+import eslintPlugin from '@nabla/vite-plugin-eslint'
+
 export default defineConfig({
-  plugins: [react()]
+  plugins: [react(), eslintPlugin()],
 })

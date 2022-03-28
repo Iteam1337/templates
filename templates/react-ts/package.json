@@ -12,9 +12,24 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@types/react": "^17.0.33",
-    "@types/react-dom": "^17.0.10",
-    "@vitejs/plugin-react": "^1.0.7",
+    "@babel/eslint-parser": "^7.17.0",
+    "@babel/plugin-syntax-jsx": "^7.16.7",
+    "@babel/preset-react": "^7.16.7",
+    "@iteam/eslint-config-react": "^0.3.2",
+    "@nabla/vite-plugin-eslint": "^1.4.0",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
+    "@vitejs/plugin-react": "^1.2.0",
+    "autoprefixer": "^10.4.4",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-testing-library": "^5.1.0",
+    "postcss": "^8.4.12",
+    "prettier": "^2.6.1",
+    "tailwindcss": "^3.0.23",
     "typescript": "^4.5.4",
     "vite": "^2.8.0"
   }
