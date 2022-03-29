@@ -7,5 +7,5 @@ This repository contains Iteam project templates to scaffold new projects and a 
 In your terminal, run:
 
 ```sh
-npm init @iteam/templates
+npm init @iteam/templates@latest
 ```
