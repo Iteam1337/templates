@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Iteam1337/templates/compare/v1.0.0...v1.0.1) (2022-03-29)
+
+
+### Bug Fixes
+
+* empty ([9f37edc](https://github.com/Iteam1337/templates/commit/9f37edc23c732203c96f2adc6fef623d51c755ab))
+
 # 1.0.0 (2022-03-29)
 
 
