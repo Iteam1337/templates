@@ -1,5 +1,6 @@
 {
   "name": "@iteam/create-templates",
+  "author": "Andreas Lundqvist <andreas.lundqvist@iteam.se>",
   "version": "0.1.0",
   "description": "Iteam project templates with our preferred defaults and configurations",
   "main": "index.js",
@@ -22,7 +23,6 @@
     "templates/*"
   ],
   "keywords": [],
-  "author": "Andreas Lundqvist <andreas.lundqvist@iteam.se>",
   "license": "ISC",
   "dependencies": {
     "kolorist": "^1.5.1",
