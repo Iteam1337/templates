@@ -1,3 +1,16 @@
+# [1.1.0](https://github.com/Iteam1337/templates/compare/v1.0.0...v1.1.0) (2022-03-29)
+
+
+### Bug Fixes
+
+* empty ([9f37edc](https://github.com/Iteam1337/templates/commit/9f37edc23c732203c96f2adc6fef623d51c755ab))
+* version bump ([b326547](https://github.com/Iteam1337/templates/commit/b32654771b34c4cc294026b23b4fc474f436fe72))
+
+
+### Features
+
+* empty ([6830c67](https://github.com/Iteam1337/templates/commit/6830c6744c269e538874e9fa717b7194ce1e92dd))
+
 ## [1.0.1](https://github.com/Iteam1337/templates/compare/v1.0.0...v1.0.1) (2022-03-29)
 
 
