@@ -3,6 +3,9 @@
   "author": "Andreas Lundqvist <andreas.lundqvist@iteam.se>",
   "version": "0.0.0",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Iteam project templates with our preferred defaults and configurations",
   "main": "index.js",
   "scripts": {
