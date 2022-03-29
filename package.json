@@ -1,7 +1,7 @@
 {
   "name": "@iteam/create-templates",
   "author": "Andreas Lundqvist <andreas.lundqvist@iteam.se>",
-  "version": "0.1.1",
+  "version": "0.0.0",
   "description": "Iteam project templates with our preferred defaults and configurations",
   "main": "index.js",
   "scripts": {
