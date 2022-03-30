@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Iteam1337/templates/compare/v1.1.0...v1.2.0) (2022-03-30)
+
+
+### Features
+
+* Adds vite-vanilla template ([#6](https://github.com/Iteam1337/templates/issues/6)) ([ad8c779](https://github.com/Iteam1337/templates/commit/ad8c77955e3387633e442acd59612d5cd3b6d897))
+
 # [1.1.0](https://github.com/Iteam1337/templates/compare/v1.0.0...v1.1.0) (2022-03-29)
 
 
