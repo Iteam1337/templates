@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/Iteam1337/templates/compare/v1.2.0...v1.2.1) (2022-03-30)
+
+
+### Bug Fixes
+
+* patch bump since we updated the test in a template ([a8106d6](https://github.com/Iteam1337/templates/commit/a8106d6675012ebc5169dda6f3e30ca1ab4ff5d4))
+
 # [1.2.0](https://github.com/Iteam1337/templates/compare/v1.1.0...v1.2.0) (2022-03-30)
 
 

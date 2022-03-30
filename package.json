@@ -1,7 +1,7 @@
 {
   "name": "@iteam/create-templates",
   "author": "Andreas Lundqvist <andreas.lundqvist@iteam.se>",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": false,
   "publishConfig": {
     "access": "public"
