@@ -1,4 +1,4 @@
-import { blue, yellow } from 'kolorist'
+import { blue, yellow, red } from 'kolorist'
 
 import * as types from './types'
 
@@ -21,6 +21,11 @@ export const TEMPLATES: types.Template[] = [
         color: blue,
         name: 'react-ts',
         display: 'TypeScript',
+      },
+      {
+        color: red,
+        name: 'vite-vanilla',
+        display: 'JavaScript',
       },
     ],
   },
