@@ -5173,6 +5173,11 @@ var TEMPLATES = [
         color: blue,
         name: "react-ts",
         display: "TypeScript"
+      },
+      {
+        color: red,
+        name: "vite-vanilla",
+        display: "JavaScript"
       }
     ]
   }
