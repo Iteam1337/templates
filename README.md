@@ -35,8 +35,8 @@ This workflow will do the following:
   - Analyze the commits since the last release, using the commit names based on [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
   - If eligible\*, create a new SemVer version tag based on the commit names
-  - If eligible\*, publish a new version of this library to NPM at `@iteam/create-templates``
-
-  \* _Eligible means if the commits since the last release motivates a new release, where commit name `fix:` motivates a patch version, `feat:` motivates a minor version, and `BREAKING CHANGE`(footer) motivates a major version._
-
-  _Read more at [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0/#summary)_
+  - If eligible\*, publish a new version of this library to NPM at `@iteam/create-templates`
+  - If eligible\*, append the new version to the changelog\
+     \
+     \* _Eligible means if the commits since the last release motivates a new release, where commit name `fix:` motivates a patch version, `feat:` motivates a minor version, and `BREAKING CHANGE`(footer) motivates a major version._
+    _Read more at [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0/#summary)_
