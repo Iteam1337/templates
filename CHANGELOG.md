@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/Iteam1337/templates/compare/v1.2.1...v1.2.2) (2022-04-04)
+
+
+### Bug Fixes
+
+* **react:** add more configuration and dependencies to template react ([#22](https://github.com/Iteam1337/templates/issues/22)) ([b2c4231](https://github.com/Iteam1337/templates/commit/b2c4231175f4d977e6ff264a474227d339644286))
+
 ## [1.2.1](https://github.com/Iteam1337/templates/compare/v1.2.0...v1.2.1) (2022-03-30)
 
 
