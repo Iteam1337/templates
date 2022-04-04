@@ -1,4 +1,4 @@
-# :guitar: Iteam React TS Template :fire:
+# :guitar: Iteam React JS Template :fire:
 
 ## Setup
 

@@ -1,0 +1,24 @@
+{
+  "extends": ["@iteam/eslint-config-react/", "plugin:import/recommended"],
+  "rules": {
+    "no-unused-vars": [
+      "warn",
+      {
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "groups": [
+          ["external", "builtin"],
+          "internal",
+          ["index", "sibling", "parent"]
+        ]
+      }
+    ]
+  }
+}
