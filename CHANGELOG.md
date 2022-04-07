@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/Iteam1337/templates/compare/v1.3.0...v1.4.0) (2022-04-07)
+
+
+### Features
+
+* nvmrc ([#27](https://github.com/Iteam1337/templates/issues/27)) ([33479e3](https://github.com/Iteam1337/templates/commit/33479e3b955694765cd4d39ae6eab3a77dce7b7d))
+
 # [1.3.0](https://github.com/Iteam1337/templates/compare/v1.2.2...v1.3.0) (2022-04-07)
 
 
