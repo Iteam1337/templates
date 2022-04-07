@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Iteam1337/templates/compare/v1.2.2...v1.3.0) (2022-04-07)
+
+
+### Features
+
+* Dockerfile ([#24](https://github.com/Iteam1337/templates/issues/24)) ([ddd7597](https://github.com/Iteam1337/templates/commit/ddd7597e17eec9e95fad59768d26e62118853da8))
+
 ## [1.2.2](https://github.com/Iteam1337/templates/compare/v1.2.1...v1.2.2) (2022-04-04)
 
 
