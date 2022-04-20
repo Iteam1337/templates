@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/Iteam1337/templates/compare/v1.4.0...v1.4.1) (2022-04-20)
+
+
+### Bug Fixes
+
+* **templates:** add workspace specific formatting configuration and e… ([#40](https://github.com/Iteam1337/templates/issues/40)) ([4e57b36](https://github.com/Iteam1337/templates/commit/4e57b369d4ea41026150b4c0c704b670be674769))
+
 # [1.4.0](https://github.com/Iteam1337/templates/compare/v1.3.0...v1.4.0) (2022-04-07)
 
 
