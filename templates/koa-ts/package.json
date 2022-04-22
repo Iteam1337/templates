@@ -1,0 +1,43 @@
+{
+  "name": "koa-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.ts",
+  "private": "true",
+  "engines": {
+    "node": "16.*"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "ts-node ./src/index.ts",
+    "dev": "nodemon -e ts,js --exec npm run start",
+    "lint": "eslint -c .eslintrc src/"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "@types/koa": "^2.13.4",
+    "@types/koa__router": "^8.0.11",
+    "@types/koa-bodyparser": "^4.3.7",
+    "@types/koa-pino-logger": "^3.0.1",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@koa/router": "^10.1.1",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-pino-logger": "^4.0.0"
+  }
+}
