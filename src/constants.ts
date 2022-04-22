@@ -1,11 +1,12 @@
-import { blue, yellow, red } from 'kolorist'
+// https://github.com/marvinhagemeister/kolorist/blob/main/src/index.ts
+import { blue, yellow, red, green } from 'kolorist';
 
-import * as types from './types'
+import * as types from './types';
 
-export const TEMPLATES_DIRECTORY = `${__dirname}/templates`
+export const TEMPLATES_DIRECTORY = `${__dirname}/templates`;
 export const RENAMABLE_FILES_MAP: { [key: string]: string } = {
   _gitignore: '.gitignore',
-}
+};
 
 export const TEMPLATES: types.Template[] = [
   {
@@ -15,18 +16,23 @@ export const TEMPLATES: types.Template[] = [
       {
         color: yellow,
         name: 'react',
-        display: 'JavaScript',
+        display: 'React JavaScript',
       },
       {
         color: blue,
         name: 'react-ts',
-        display: 'TypeScript',
+        display: 'React TypeScript',
       },
       {
         color: red,
         name: 'vite-vanilla',
-        display: 'JavaScript',
+        display: 'Vite JavaScript',
+      },
+      {
+        color: green,
+        name: 'koa-ts',
+        display: 'Koa Typescript',
       },
     ],
   },
-]
+];

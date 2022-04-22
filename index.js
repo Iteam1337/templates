@@ -5167,17 +5167,22 @@ var TEMPLATES = [
       {
         color: yellow,
         name: "react",
-        display: "JavaScript"
+        display: "React JavaScript"
       },
       {
         color: blue,
         name: "react-ts",
-        display: "TypeScript"
+        display: "React TypeScript"
       },
       {
         color: red,
         name: "vite-vanilla",
         display: "JavaScript"
+      },
+      {
+        color: green,
+        name: "koa-ts",
+        display: "Koa Typescript"
       }
     ]
   }
