@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/Iteam1337/templates/compare/v1.4.1...v1.5.0) (2022-04-25)
+
+
+### Features
+
+* **templates:** koa.js typescript template ([c95d9e0](https://github.com/Iteam1337/templates/commit/c95d9e0be4c1fac30541fb3649fcdcdb0cf4d4d6))
+
 ## [1.4.1](https://github.com/Iteam1337/templates/compare/v1.4.0...v1.4.1) (2022-04-20)
 
 
