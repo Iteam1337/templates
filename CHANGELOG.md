@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/Iteam1337/templates/compare/v1.5.0...v1.5.1) (2022-04-26)
+
+
+### Bug Fixes
+
+* Escape character in test regex ([66be7da](https://github.com/Iteam1337/templates/commit/66be7da6637150503f48c7e6964a7a73d13fb154))
+
 # [1.5.0](https://github.com/Iteam1337/templates/compare/v1.4.1...v1.5.0) (2022-04-25)
 
 
