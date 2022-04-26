@@ -7,7 +7,7 @@ describe('Simple working test', () => {
   it('the title is visible', () => {
     render(<App />);
     expect(
-      screen.getByText(/Hello Iteam + React + Typescript!/i)
+      screen.getByText(/Hello Iteam \+ React \+ Typescript!/i)
     ).toBeInTheDocument();
   });
 });
