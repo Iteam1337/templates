@@ -17,40 +17,60 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
+var __async = (__this, __arguments, generator) => {
+  return new Promise((resolve, reject) => {
+    var fulfilled = (value) => {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var rejected = (value) => {
+      try {
+        step(generator.throw(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    step((generator = generator.apply(__this, __arguments)).next());
+  });
+};
 
 // node_modules/kleur/index.js
 var require_kleur = __commonJS({
-  "node_modules/kleur/index.js"(exports, module2) {
+  "node_modules/kleur/index.js"(exports2, module2) {
     "use strict";
     var { FORCE_COLOR, NODE_DISABLE_COLORS, TERM } = process.env;
     var $ = {
       enabled: !NODE_DISABLE_COLORS && TERM !== "dumb" && FORCE_COLOR !== "0",
-      reset: init2(0, 0),
-      bold: init2(1, 22),
-      dim: init2(2, 22),
-      italic: init2(3, 23),
-      underline: init2(4, 24),
-      inverse: init2(7, 27),
-      hidden: init2(8, 28),
-      strikethrough: init2(9, 29),
-      black: init2(30, 39),
-      red: init2(31, 39),
-      green: init2(32, 39),
-      yellow: init2(33, 39),
-      blue: init2(34, 39),
-      magenta: init2(35, 39),
-      cyan: init2(36, 39),
-      white: init2(37, 39),
-      gray: init2(90, 39),
-      grey: init2(90, 39),
-      bgBlack: init2(40, 49),
-      bgRed: init2(41, 49),
-      bgGreen: init2(42, 49),
-      bgYellow: init2(43, 49),
-      bgBlue: init2(44, 49),
-      bgMagenta: init2(45, 49),
-      bgCyan: init2(46, 49),
-      bgWhite: init2(47, 49)
+      reset: init(0, 0),
+      bold: init(1, 22),
+      dim: init(2, 22),
+      italic: init(3, 23),
+      underline: init(4, 24),
+      inverse: init(7, 27),
+      hidden: init(8, 28),
+      strikethrough: init(9, 29),
+      black: init(30, 39),
+      red: init(31, 39),
+      green: init(32, 39),
+      yellow: init(33, 39),
+      blue: init(34, 39),
+      magenta: init(35, 39),
+      cyan: init(36, 39),
+      white: init(37, 39),
+      gray: init(90, 39),
+      grey: init(90, 39),
+      bgBlack: init(40, 49),
+      bgRed: init(41, 49),
+      bgGreen: init(42, 49),
+      bgYellow: init(43, 49),
+      bgBlue: init(44, 49),
+      bgMagenta: init(45, 49),
+      bgCyan: init(46, 49),
+      bgWhite: init(47, 49)
     };
     function run(arr, str) {
       let i = 0, tmp, beg = "", end = "";
@@ -94,7 +114,7 @@ var require_kleur = __commonJS({
       ctx.bgWhite = $.bgWhite.bind(ctx);
       return ctx;
     }
-    function init2(open, close) {
+    function init(open, close) {
       let blk = {
         open: `\x1B[${open}m`,
         close: `\x1B[${close}m`,
@@ -114,7 +134,7 @@ var require_kleur = __commonJS({
 
 // node_modules/prompts/dist/util/action.js
 var require_action = __commonJS({
-  "node_modules/prompts/dist/util/action.js"(exports, module2) {
+  "node_modules/prompts/dist/util/action.js"(exports2, module2) {
     "use strict";
     module2.exports = (key, isSelect) => {
       if (key.meta && key.name !== "escape")
@@ -174,7 +194,7 @@ var require_action = __commonJS({
 
 // node_modules/prompts/dist/util/strip.js
 var require_strip = __commonJS({
-  "node_modules/prompts/dist/util/strip.js"(exports, module2) {
+  "node_modules/prompts/dist/util/strip.js"(exports2, module2) {
     "use strict";
     module2.exports = (str) => {
       const pattern = ["[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)", "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PRZcf-ntqry=><~]))"].join("|");
@@ -186,7 +206,7 @@ var require_strip = __commonJS({
 
 // node_modules/sisteransi/src/index.js
 var require_src = __commonJS({
-  "node_modules/sisteransi/src/index.js"(exports, module2) {
+  "node_modules/sisteransi/src/index.js"(exports2, module2) {
     "use strict";
     var ESC = "\x1B";
     var CSI = `${ESC}[`;
@@ -247,7 +267,7 @@ var require_src = __commonJS({
 
 // node_modules/prompts/dist/util/clear.js
 var require_clear = __commonJS({
-  "node_modules/prompts/dist/util/clear.js"(exports, module2) {
+  "node_modules/prompts/dist/util/clear.js"(exports2, module2) {
     "use strict";
     function _createForOfIteratorHelper(o, allowArrayLike) {
       var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
@@ -336,7 +356,7 @@ var require_clear = __commonJS({
 
 // node_modules/prompts/dist/util/figures.js
 var require_figures = __commonJS({
-  "node_modules/prompts/dist/util/figures.js"(exports, module2) {
+  "node_modules/prompts/dist/util/figures.js"(exports2, module2) {
     "use strict";
     var main = {
       arrowUp: "\u2191",
@@ -373,7 +393,7 @@ var require_figures = __commonJS({
 
 // node_modules/prompts/dist/util/style.js
 var require_style = __commonJS({
-  "node_modules/prompts/dist/util/style.js"(exports, module2) {
+  "node_modules/prompts/dist/util/style.js"(exports2, module2) {
     "use strict";
     var c = require_kleur();
     var figures = require_figures();
@@ -418,7 +438,7 @@ var require_style = __commonJS({
 
 // node_modules/prompts/dist/util/lines.js
 var require_lines = __commonJS({
-  "node_modules/prompts/dist/util/lines.js"(exports, module2) {
+  "node_modules/prompts/dist/util/lines.js"(exports2, module2) {
     "use strict";
     var strip = require_strip();
     module2.exports = function(msg, perLine) {
@@ -432,7 +452,7 @@ var require_lines = __commonJS({
 
 // node_modules/prompts/dist/util/wrap.js
 var require_wrap = __commonJS({
-  "node_modules/prompts/dist/util/wrap.js"(exports, module2) {
+  "node_modules/prompts/dist/util/wrap.js"(exports2, module2) {
     "use strict";
     module2.exports = (msg, opts = {}) => {
       const tab = Number.isSafeInteger(parseInt(opts.margin)) ? new Array(parseInt(opts.margin)).fill(" ").join("") : opts.margin || "";
@@ -450,7 +470,7 @@ var require_wrap = __commonJS({
 
 // node_modules/prompts/dist/util/entriesToDisplay.js
 var require_entriesToDisplay = __commonJS({
-  "node_modules/prompts/dist/util/entriesToDisplay.js"(exports, module2) {
+  "node_modules/prompts/dist/util/entriesToDisplay.js"(exports2, module2) {
     "use strict";
     module2.exports = (cursor, total, maxVisible) => {
       maxVisible = maxVisible || total;
@@ -468,7 +488,7 @@ var require_entriesToDisplay = __commonJS({
 
 // node_modules/prompts/dist/util/index.js
 var require_util = __commonJS({
-  "node_modules/prompts/dist/util/index.js"(exports, module2) {
+  "node_modules/prompts/dist/util/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       action: require_action(),
@@ -485,7 +505,7 @@ var require_util = __commonJS({
 
 // node_modules/prompts/dist/elements/prompt.js
 var require_prompt = __commonJS({
-  "node_modules/prompts/dist/elements/prompt.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/prompt.js"(exports2, module2) {
     "use strict";
     var readline = require("readline");
     var _require = require_util();
@@ -553,7 +573,7 @@ var require_prompt = __commonJS({
 
 // node_modules/prompts/dist/elements/text.js
 var require_text = __commonJS({
-  "node_modules/prompts/dist/elements/text.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/text.js"(exports2, module2) {
     "use strict";
     function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       try {
@@ -777,7 +797,7 @@ ${i ? " " : figures.pointerSmall} ${color.red().italic(l)}`, ``);
 
 // node_modules/prompts/dist/elements/select.js
 var require_select = __commonJS({
-  "node_modules/prompts/dist/elements/select.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/select.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt();
@@ -931,7 +951,7 @@ var require_select = __commonJS({
 
 // node_modules/prompts/dist/elements/toggle.js
 var require_toggle = __commonJS({
-  "node_modules/prompts/dist/elements/toggle.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/toggle.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt();
@@ -1035,7 +1055,7 @@ var require_toggle = __commonJS({
 
 // node_modules/prompts/dist/dateparts/datepart.js
 var require_datepart = __commonJS({
-  "node_modules/prompts/dist/dateparts/datepart.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/datepart.js"(exports2, module2) {
     "use strict";
     var DatePart = class {
       constructor({
@@ -1074,7 +1094,7 @@ var require_datepart = __commonJS({
 
 // node_modules/prompts/dist/dateparts/meridiem.js
 var require_meridiem = __commonJS({
-  "node_modules/prompts/dist/dateparts/meridiem.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/meridiem.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Meridiem = class extends DatePart {
@@ -1098,7 +1118,7 @@ var require_meridiem = __commonJS({
 
 // node_modules/prompts/dist/dateparts/day.js
 var require_day = __commonJS({
-  "node_modules/prompts/dist/dateparts/day.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/day.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var pos = (n) => {
@@ -1130,7 +1150,7 @@ var require_day = __commonJS({
 
 // node_modules/prompts/dist/dateparts/hours.js
 var require_hours = __commonJS({
-  "node_modules/prompts/dist/dateparts/hours.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/hours.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Hours = class extends DatePart {
@@ -1159,7 +1179,7 @@ var require_hours = __commonJS({
 
 // node_modules/prompts/dist/dateparts/milliseconds.js
 var require_milliseconds = __commonJS({
-  "node_modules/prompts/dist/dateparts/milliseconds.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/milliseconds.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Milliseconds = class extends DatePart {
@@ -1185,7 +1205,7 @@ var require_milliseconds = __commonJS({
 
 // node_modules/prompts/dist/dateparts/minutes.js
 var require_minutes = __commonJS({
-  "node_modules/prompts/dist/dateparts/minutes.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/minutes.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Minutes = class extends DatePart {
@@ -1212,7 +1232,7 @@ var require_minutes = __commonJS({
 
 // node_modules/prompts/dist/dateparts/month.js
 var require_month = __commonJS({
-  "node_modules/prompts/dist/dateparts/month.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/month.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Month = class extends DatePart {
@@ -1241,7 +1261,7 @@ var require_month = __commonJS({
 
 // node_modules/prompts/dist/dateparts/seconds.js
 var require_seconds = __commonJS({
-  "node_modules/prompts/dist/dateparts/seconds.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/seconds.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Seconds = class extends DatePart {
@@ -1268,7 +1288,7 @@ var require_seconds = __commonJS({
 
 // node_modules/prompts/dist/dateparts/year.js
 var require_year = __commonJS({
-  "node_modules/prompts/dist/dateparts/year.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/year.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Year = class extends DatePart {
@@ -1295,7 +1315,7 @@ var require_year = __commonJS({
 
 // node_modules/prompts/dist/dateparts/index.js
 var require_dateparts = __commonJS({
-  "node_modules/prompts/dist/dateparts/index.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       DatePart: require_datepart(),
@@ -1313,7 +1333,7 @@ var require_dateparts = __commonJS({
 
 // node_modules/prompts/dist/elements/date.js
 var require_date = __commonJS({
-  "node_modules/prompts/dist/elements/date.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/date.js"(exports2, module2) {
     "use strict";
     function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       try {
@@ -1437,7 +1457,7 @@ var require_date = __commonJS({
         this.fire();
       }
       reset() {
-        this.moveCursor(this.parts.findIndex((p) => p instanceof DatePart));
+        this.moveCursor(this.parts.findIndex((p3) => p3 instanceof DatePart));
         this.fire();
         this.render();
       }
@@ -1525,7 +1545,7 @@ var require_date = __commonJS({
         else
           this.out.write(clear(this.outputText, this.out.columns));
         super.render();
-        this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(false), this.parts.reduce((arr, p, idx) => arr.concat(idx === this.cursor && !this.done ? color.cyan().underline(p.toString()) : p), []).join("")].join(" ");
+        this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(false), this.parts.reduce((arr, p3, idx) => arr.concat(idx === this.cursor && !this.done ? color.cyan().underline(p3.toString()) : p3), []).join("")].join(" ");
         if (this.error) {
           this.outputText += this.errorMsg.split("\n").reduce((a, l, i) => a + `
 ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
@@ -1539,7 +1559,7 @@ ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
 
 // node_modules/prompts/dist/elements/number.js
 var require_number = __commonJS({
-  "node_modules/prompts/dist/elements/number.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/number.js"(exports2, module2) {
     "use strict";
     function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       try {
@@ -1764,7 +1784,7 @@ ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
 
 // node_modules/prompts/dist/elements/multiselect.js
 var require_multiselect = __commonJS({
-  "node_modules/prompts/dist/elements/multiselect.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/multiselect.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var _require = require_src();
@@ -1997,7 +2017,7 @@ Instructions:
 
 // node_modules/prompts/dist/elements/autocomplete.js
 var require_autocomplete = __commonJS({
-  "node_modules/prompts/dist/elements/autocomplete.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/autocomplete.js"(exports2, module2) {
     "use strict";
     function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       try {
@@ -2096,9 +2116,9 @@ var require_autocomplete = __commonJS({
       complete(cb) {
         var _this = this;
         return _asyncToGenerator(function* () {
-          const p = _this.completing = _this.suggest(_this.input, _this.choices);
-          const suggestions = yield p;
-          if (_this.completing !== p)
+          const p3 = _this.completing = _this.suggest(_this.input, _this.choices);
+          const suggestions = yield p3;
+          if (_this.completing !== p3)
             return;
           _this.suggestions = suggestions.map((s, i, arr) => ({
             title: getTitle(arr, i),
@@ -2265,7 +2285,7 @@ var require_autocomplete = __commonJS({
 
 // node_modules/prompts/dist/elements/autocompleteMultiselect.js
 var require_autocompleteMultiselect = __commonJS({
-  "node_modules/prompts/dist/elements/autocompleteMultiselect.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/autocompleteMultiselect.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var _require = require_src();
@@ -2429,7 +2449,7 @@ Filtered results for: ${this.inputValue ? this.inputValue : color.gray("Enter so
 
 // node_modules/prompts/dist/elements/confirm.js
 var require_confirm = __commonJS({
-  "node_modules/prompts/dist/elements/confirm.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/confirm.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt();
@@ -2504,7 +2524,7 @@ var require_confirm = __commonJS({
 
 // node_modules/prompts/dist/elements/index.js
 var require_elements = __commonJS({
-  "node_modules/prompts/dist/elements/index.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       TextPrompt: require_text(),
@@ -2522,21 +2542,21 @@ var require_elements = __commonJS({
 
 // node_modules/prompts/dist/prompts.js
 var require_prompts = __commonJS({
-  "node_modules/prompts/dist/prompts.js"(exports) {
+  "node_modules/prompts/dist/prompts.js"(exports2) {
     "use strict";
-    var $ = exports;
+    var $ = exports2;
     var el = require_elements();
     var noop = (v) => v;
     function toPrompt(type, args, opts = {}) {
       return new Promise((res, rej) => {
-        const p = new el[type](args);
+        const p3 = new el[type](args);
         const onAbort = opts.onAbort || noop;
         const onSubmit = opts.onSubmit || noop;
         const onExit = opts.onExit || noop;
-        p.on("state", args.onState || noop);
-        p.on("submit", (x) => res(onSubmit(x)));
-        p.on("exit", (x) => res(onExit(x)));
-        p.on("abort", (x) => rej(onAbort(x)));
+        p3.on("state", args.onState || noop);
+        p3.on("submit", (x) => res(onSubmit(x)));
+        p3.on("exit", (x) => res(onExit(x)));
+        p3.on("abort", (x) => rej(onAbort(x)));
       });
     }
     $.text = (args) => toPrompt("TextPrompt", args);
@@ -2586,7 +2606,7 @@ var require_prompts = __commonJS({
 
 // node_modules/prompts/dist/index.js
 var require_dist = __commonJS({
-  "node_modules/prompts/dist/index.js"(exports, module2) {
+  "node_modules/prompts/dist/index.js"(exports2, module2) {
     "use strict";
     function ownKeys(object, enumerableOnly) {
       var keys = Object.keys(object);
@@ -2714,7 +2734,7 @@ var require_dist = __commonJS({
         });
       };
     }
-    var prompts2 = require_prompts();
+    var prompts = require_prompts();
     var passOn = ["suggest", "format", "onState", "validate", "onRender", "type"];
     var noop = () => {
     };
@@ -2767,7 +2787,7 @@ var require_dist = __commonJS({
             var _question2 = question;
             name = _question2.name;
             type = _question2.type;
-            if (prompts2[type] === void 0) {
+            if (prompts[type] === void 0) {
               throw new Error(`prompt type (${type}) is not defined`);
             }
             if (override2[question.name] !== void 0) {
@@ -2778,7 +2798,7 @@ var require_dist = __commonJS({
               }
             }
             try {
-              answer = prompt._injected ? getInjectedAnswer(prompt._injected, question.initial) : yield prompts2[type](question);
+              answer = prompt._injected ? getInjectedAnswer(prompt._injected, question.initial) : yield prompts[type](question);
               answers[name] = answer = yield getFormattedAnswer(question, answer, true);
               quit = yield onSubmit(question, answer, answers);
             } catch (err) {
@@ -2811,7 +2831,7 @@ var require_dist = __commonJS({
     }
     module2.exports = Object.assign(prompt, {
       prompt,
-      prompts: prompts2,
+      prompts,
       inject,
       override
     });
@@ -2820,7 +2840,7 @@ var require_dist = __commonJS({
 
 // node_modules/prompts/lib/util/action.js
 var require_action2 = __commonJS({
-  "node_modules/prompts/lib/util/action.js"(exports, module2) {
+  "node_modules/prompts/lib/util/action.js"(exports2, module2) {
     "use strict";
     module2.exports = (key, isSelect) => {
       if (key.meta && key.name !== "escape")
@@ -2880,7 +2900,7 @@ var require_action2 = __commonJS({
 
 // node_modules/prompts/lib/util/strip.js
 var require_strip2 = __commonJS({
-  "node_modules/prompts/lib/util/strip.js"(exports, module2) {
+  "node_modules/prompts/lib/util/strip.js"(exports2, module2) {
     "use strict";
     module2.exports = (str) => {
       const pattern = [
@@ -2895,7 +2915,7 @@ var require_strip2 = __commonJS({
 
 // node_modules/prompts/lib/util/clear.js
 var require_clear2 = __commonJS({
-  "node_modules/prompts/lib/util/clear.js"(exports, module2) {
+  "node_modules/prompts/lib/util/clear.js"(exports2, module2) {
     "use strict";
     var strip = require_strip2();
     var { erase, cursor } = require_src();
@@ -2915,7 +2935,7 @@ var require_clear2 = __commonJS({
 
 // node_modules/prompts/lib/util/figures.js
 var require_figures2 = __commonJS({
-  "node_modules/prompts/lib/util/figures.js"(exports, module2) {
+  "node_modules/prompts/lib/util/figures.js"(exports2, module2) {
     "use strict";
     var main = {
       arrowUp: "\u2191",
@@ -2952,7 +2972,7 @@ var require_figures2 = __commonJS({
 
 // node_modules/prompts/lib/util/style.js
 var require_style2 = __commonJS({
-  "node_modules/prompts/lib/util/style.js"(exports, module2) {
+  "node_modules/prompts/lib/util/style.js"(exports2, module2) {
     "use strict";
     var c = require_kleur();
     var figures = require_figures2();
@@ -2985,7 +3005,7 @@ var require_style2 = __commonJS({
 
 // node_modules/prompts/lib/util/lines.js
 var require_lines2 = __commonJS({
-  "node_modules/prompts/lib/util/lines.js"(exports, module2) {
+  "node_modules/prompts/lib/util/lines.js"(exports2, module2) {
     "use strict";
     var strip = require_strip2();
     module2.exports = function(msg, perLine) {
@@ -2999,7 +3019,7 @@ var require_lines2 = __commonJS({
 
 // node_modules/prompts/lib/util/wrap.js
 var require_wrap2 = __commonJS({
-  "node_modules/prompts/lib/util/wrap.js"(exports, module2) {
+  "node_modules/prompts/lib/util/wrap.js"(exports2, module2) {
     "use strict";
     module2.exports = (msg, opts = {}) => {
       const tab = Number.isSafeInteger(parseInt(opts.margin)) ? new Array(parseInt(opts.margin)).fill(" ").join("") : opts.margin || "";
@@ -3017,7 +3037,7 @@ var require_wrap2 = __commonJS({
 
 // node_modules/prompts/lib/util/entriesToDisplay.js
 var require_entriesToDisplay2 = __commonJS({
-  "node_modules/prompts/lib/util/entriesToDisplay.js"(exports, module2) {
+  "node_modules/prompts/lib/util/entriesToDisplay.js"(exports2, module2) {
     "use strict";
     module2.exports = (cursor, total, maxVisible) => {
       maxVisible = maxVisible || total;
@@ -3032,7 +3052,7 @@ var require_entriesToDisplay2 = __commonJS({
 
 // node_modules/prompts/lib/util/index.js
 var require_util2 = __commonJS({
-  "node_modules/prompts/lib/util/index.js"(exports, module2) {
+  "node_modules/prompts/lib/util/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       action: require_action2(),
@@ -3049,7 +3069,7 @@ var require_util2 = __commonJS({
 
 // node_modules/prompts/lib/elements/prompt.js
 var require_prompt2 = __commonJS({
-  "node_modules/prompts/lib/elements/prompt.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/prompt.js"(exports2, module2) {
     "use strict";
     var readline = require("readline");
     var { action } = require_util2();
@@ -3111,7 +3131,7 @@ var require_prompt2 = __commonJS({
 
 // node_modules/prompts/lib/elements/text.js
 var require_text2 = __commonJS({
-  "node_modules/prompts/lib/elements/text.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/text.js"(exports2, module2) {
     var color = require_kleur();
     var Prompt = require_prompt2();
     var { erase, cursor } = require_src();
@@ -3298,7 +3318,7 @@ ${i ? " " : figures.pointerSmall} ${color.red().italic(l)}`, ``);
 
 // node_modules/prompts/lib/elements/select.js
 var require_select2 = __commonJS({
-  "node_modules/prompts/lib/elements/select.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/select.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt2();
@@ -3445,7 +3465,7 @@ var require_select2 = __commonJS({
 
 // node_modules/prompts/lib/elements/toggle.js
 var require_toggle2 = __commonJS({
-  "node_modules/prompts/lib/elements/toggle.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/toggle.js"(exports2, module2) {
     var color = require_kleur();
     var Prompt = require_prompt2();
     var { style, clear } = require_util2();
@@ -3551,7 +3571,7 @@ var require_toggle2 = __commonJS({
 
 // node_modules/prompts/lib/dateparts/datepart.js
 var require_datepart2 = __commonJS({
-  "node_modules/prompts/lib/dateparts/datepart.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/datepart.js"(exports2, module2) {
     "use strict";
     var DatePart = class {
       constructor({ token, date, parts, locales }) {
@@ -3585,7 +3605,7 @@ var require_datepart2 = __commonJS({
 
 // node_modules/prompts/lib/dateparts/meridiem.js
 var require_meridiem2 = __commonJS({
-  "node_modules/prompts/lib/dateparts/meridiem.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/meridiem.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Meridiem = class extends DatePart {
@@ -3609,7 +3629,7 @@ var require_meridiem2 = __commonJS({
 
 // node_modules/prompts/lib/dateparts/day.js
 var require_day2 = __commonJS({
-  "node_modules/prompts/lib/dateparts/day.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/day.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var pos = (n) => {
@@ -3641,7 +3661,7 @@ var require_day2 = __commonJS({
 
 // node_modules/prompts/lib/dateparts/hours.js
 var require_hours2 = __commonJS({
-  "node_modules/prompts/lib/dateparts/hours.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/hours.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Hours = class extends DatePart {
@@ -3670,7 +3690,7 @@ var require_hours2 = __commonJS({
 
 // node_modules/prompts/lib/dateparts/milliseconds.js
 var require_milliseconds2 = __commonJS({
-  "node_modules/prompts/lib/dateparts/milliseconds.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/milliseconds.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Milliseconds = class extends DatePart {
@@ -3696,7 +3716,7 @@ var require_milliseconds2 = __commonJS({
 
 // node_modules/prompts/lib/dateparts/minutes.js
 var require_minutes2 = __commonJS({
-  "node_modules/prompts/lib/dateparts/minutes.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/minutes.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Minutes = class extends DatePart {
@@ -3723,7 +3743,7 @@ var require_minutes2 = __commonJS({
 
 // node_modules/prompts/lib/dateparts/month.js
 var require_month2 = __commonJS({
-  "node_modules/prompts/lib/dateparts/month.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/month.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Month = class extends DatePart {
@@ -3752,7 +3772,7 @@ var require_month2 = __commonJS({
 
 // node_modules/prompts/lib/dateparts/seconds.js
 var require_seconds2 = __commonJS({
-  "node_modules/prompts/lib/dateparts/seconds.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/seconds.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Seconds = class extends DatePart {
@@ -3779,7 +3799,7 @@ var require_seconds2 = __commonJS({
 
 // node_modules/prompts/lib/dateparts/year.js
 var require_year2 = __commonJS({
-  "node_modules/prompts/lib/dateparts/year.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/year.js"(exports2, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Year = class extends DatePart {
@@ -3806,7 +3826,7 @@ var require_year2 = __commonJS({
 
 // node_modules/prompts/lib/dateparts/index.js
 var require_dateparts2 = __commonJS({
-  "node_modules/prompts/lib/dateparts/index.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       DatePart: require_datepart2(),
@@ -3824,7 +3844,7 @@ var require_dateparts2 = __commonJS({
 
 // node_modules/prompts/lib/elements/date.js
 var require_date2 = __commonJS({
-  "node_modules/prompts/lib/elements/date.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/date.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt2();
@@ -3898,7 +3918,7 @@ var require_date2 = __commonJS({
         this.fire();
       }
       reset() {
-        this.moveCursor(this.parts.findIndex((p) => p instanceof DatePart));
+        this.moveCursor(this.parts.findIndex((p3) => p3 instanceof DatePart));
         this.fire();
         this.render();
       }
@@ -3984,7 +4004,7 @@ var require_date2 = __commonJS({
           style.symbol(this.done, this.aborted),
           color.bold(this.msg),
           style.delimiter(false),
-          this.parts.reduce((arr, p, idx) => arr.concat(idx === this.cursor && !this.done ? color.cyan().underline(p.toString()) : p), []).join("")
+          this.parts.reduce((arr, p3, idx) => arr.concat(idx === this.cursor && !this.done ? color.cyan().underline(p3.toString()) : p3), []).join("")
         ].join(" ");
         if (this.error) {
           this.outputText += this.errorMsg.split("\n").reduce((a, l, i) => a + `
@@ -3999,7 +4019,7 @@ ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
 
 // node_modules/prompts/lib/elements/number.js
 var require_number2 = __commonJS({
-  "node_modules/prompts/lib/elements/number.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/number.js"(exports2, module2) {
     var color = require_kleur();
     var Prompt = require_prompt2();
     var { cursor, erase } = require_src();
@@ -4187,7 +4207,7 @@ ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
 
 // node_modules/prompts/lib/elements/multiselect.js
 var require_multiselect2 = __commonJS({
-  "node_modules/prompts/lib/elements/multiselect.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/multiselect.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var { cursor } = require_src();
@@ -4413,7 +4433,7 @@ Instructions:
 
 // node_modules/prompts/lib/elements/autocomplete.js
 var require_autocomplete2 = __commonJS({
-  "node_modules/prompts/lib/elements/autocomplete.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/autocomplete.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt2();
@@ -4468,9 +4488,9 @@ var require_autocomplete2 = __commonJS({
         this.fire();
       }
       async complete(cb) {
-        const p = this.completing = this.suggest(this.input, this.choices);
-        const suggestions = await p;
-        if (this.completing !== p)
+        const p3 = this.completing = this.suggest(this.input, this.choices);
+        const suggestions = await p3;
+        if (this.completing !== p3)
           return;
         this.suggestions = suggestions.map((s, i, arr) => ({ title: getTitle(arr, i), value: getVal(arr, i), description: s.description }));
         this.completing = false;
@@ -4634,7 +4654,7 @@ var require_autocomplete2 = __commonJS({
 
 // node_modules/prompts/lib/elements/autocompleteMultiselect.js
 var require_autocompleteMultiselect2 = __commonJS({
-  "node_modules/prompts/lib/elements/autocompleteMultiselect.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/autocompleteMultiselect.js"(exports2, module2) {
     "use strict";
     var color = require_kleur();
     var { cursor } = require_src();
@@ -4799,7 +4819,7 @@ Filtered results for: ${this.inputValue ? this.inputValue : color.gray("Enter so
 
 // node_modules/prompts/lib/elements/confirm.js
 var require_confirm2 = __commonJS({
-  "node_modules/prompts/lib/elements/confirm.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/confirm.js"(exports2, module2) {
     var color = require_kleur();
     var Prompt = require_prompt2();
     var { style, clear } = require_util2();
@@ -4874,7 +4894,7 @@ var require_confirm2 = __commonJS({
 
 // node_modules/prompts/lib/elements/index.js
 var require_elements2 = __commonJS({
-  "node_modules/prompts/lib/elements/index.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
       TextPrompt: require_text2(),
@@ -4892,21 +4912,21 @@ var require_elements2 = __commonJS({
 
 // node_modules/prompts/lib/prompts.js
 var require_prompts2 = __commonJS({
-  "node_modules/prompts/lib/prompts.js"(exports) {
+  "node_modules/prompts/lib/prompts.js"(exports2) {
     "use strict";
-    var $ = exports;
+    var $ = exports2;
     var el = require_elements2();
     var noop = (v) => v;
     function toPrompt(type, args, opts = {}) {
       return new Promise((res, rej) => {
-        const p = new el[type](args);
+        const p3 = new el[type](args);
         const onAbort = opts.onAbort || noop;
         const onSubmit = opts.onSubmit || noop;
         const onExit = opts.onExit || noop;
-        p.on("state", args.onState || noop);
-        p.on("submit", (x) => res(onSubmit(x)));
-        p.on("exit", (x) => res(onExit(x)));
-        p.on("abort", (x) => rej(onAbort(x)));
+        p3.on("state", args.onState || noop);
+        p3.on("submit", (x) => res(onSubmit(x)));
+        p3.on("exit", (x) => res(onExit(x)));
+        p3.on("abort", (x) => rej(onAbort(x)));
       });
     }
     $.text = (args) => toPrompt("TextPrompt", args);
@@ -4956,9 +4976,9 @@ var require_prompts2 = __commonJS({
 
 // node_modules/prompts/lib/index.js
 var require_lib = __commonJS({
-  "node_modules/prompts/lib/index.js"(exports, module2) {
+  "node_modules/prompts/lib/index.js"(exports2, module2) {
     "use strict";
-    var prompts2 = require_prompts2();
+    var prompts = require_prompts2();
     var passOn = ["suggest", "format", "onState", "validate", "onRender", "type"];
     var noop = () => {
     };
@@ -4992,7 +5012,7 @@ var require_lib = __commonJS({
           throw new Error("prompt message is required");
         }
         ({ name, type } = question);
-        if (prompts2[type] === void 0) {
+        if (prompts[type] === void 0) {
           throw new Error(`prompt type (${type}) is not defined`);
         }
         if (override2[question.name] !== void 0) {
@@ -5003,7 +5023,7 @@ var require_lib = __commonJS({
           }
         }
         try {
-          answer = prompt._injected ? getInjectedAnswer(prompt._injected, question.initial) : await prompts2[type](question);
+          answer = prompt._injected ? getInjectedAnswer(prompt._injected, question.initial) : await prompts[type](question);
           answers[name] = answer = await getFormattedAnswer(question, answer, true);
           quit = await onSubmit(question, answer, answers);
         } catch (err) {
@@ -5027,13 +5047,13 @@ var require_lib = __commonJS({
     function override(answers) {
       prompt._override = Object.assign({}, answers);
     }
-    module2.exports = Object.assign(prompt, { prompt, prompts: prompts2, inject, override });
+    module2.exports = Object.assign(prompt, { prompt, prompts, inject, override });
   }
 });
 
 // node_modules/prompts/index.js
 var require_prompts3 = __commonJS({
-  "node_modules/prompts/index.js"(exports, module2) {
+  "node_modules/prompts/index.js"(exports2, module2) {
     function isNodeLT(tar) {
       tar = (Array.isArray(tar) ? tar : tar.split(".")).map(Number);
       let i = 0, src = process.versions.node.split(".").map(Number);
@@ -5049,7 +5069,7 @@ var require_prompts3 = __commonJS({
   }
 });
 
-// src/index.ts
+// src/prompts/create.ts
 var import_prompts = __toESM(require_prompts3());
 var import_fs2 = __toESM(require("fs"));
 var import_path3 = __toESM(require("path"));
@@ -5087,8 +5107,8 @@ var options = {
   enabled,
   supportLevel
 };
-function kolorist(start, end, level = 1) {
-  const open = `\x1B[${start}m`;
+function kolorist(start2, end, level = 1) {
+  const open = `\x1B[${start2}m`;
   const close = `\x1B[${end}m`;
   const regex = new RegExp(`\\x1b\\[${end}m`, "g");
   return (str) => {
@@ -5177,7 +5197,7 @@ var TEMPLATES = [
       {
         color: red,
         name: "vite-vanilla",
-        display: "JavaScript"
+        display: "Vite JavaScript"
       },
       {
         color: green,
@@ -5190,26 +5210,36 @@ var TEMPLATES = [
 
 // src/utils.ts
 var isValidPkgName = (name) => /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(name);
-var getPkgManagerFromUserAgent = (userAgent) => userAgent?.split(" ")[0]?.split("/")[0];
+var getPkgManagerFromUserAgent = (userAgent) => {
+  var _a;
+  return (_a = userAgent == null ? void 0 : userAgent.split(" ")[0]) == null ? void 0 : _a.split("/")[0];
+};
 var isNotPackageJson = (name) => name !== "package.json";
 var toValidPackageName = (name) => name.trim().toLowerCase().replace(/\s+/g, "-").replace(/^[._]/, "").replace(/[^a-z0-9-~]+/g, "-");
 var installInstructionsByPkgManager = (pkgManager) => {
+  var _a;
   const instructions = {
     yarn: `  yarn 
    yarn dev`,
     default: `  ${pkgManager} install 
   ${pkgManager} run dev`
   };
-  return instructions[pkgManager] ?? instructions.default;
+  return (_a = instructions[pkgManager]) != null ? _a : instructions.default;
 };
-var getTargetPath = (targetPath, fileName) => import_path2.default.join(targetPath, RENAMABLE_FILES_MAP[fileName] ?? fileName);
+var getTargetPath = (targetPath, fileName) => {
+  var _a;
+  return import_path2.default.join(targetPath, (_a = RENAMABLE_FILES_MAP[fileName]) != null ? _a : fileName);
+};
+var handleError = (error) => console.error(error.message);
+var templateAsSelectOption = (template) => ({
+  title: template.color(template.name),
+  value: template
+});
 
-// src/index.ts
+// src/prompts/create.ts
 var cwd = process.cwd();
-var init = async () => {
-  const state = {
-    targetDir: ""
-  };
+function create() {
+  let targetDir = "";
   const templates = TEMPLATES.flatMap((f) => f.variants);
   let steps = [
     {
@@ -5217,11 +5247,11 @@ var init = async () => {
       name: "projectName",
       message: "Project name:",
       initial: "my-awesome-project",
-      onState: ({ value = "" }) => state.targetDir = value.trim()
+      onState: ({ value = "" }) => targetDir = value.trim()
     },
     {
       type: () => {
-        if (import_fs2.default.existsSync(state.targetDir) ? "confirm" : null) {
+        if (import_fs2.default.existsSync(targetDir) ? "confirm" : null) {
           throw new Error("Target directory is not empty. Please try again.");
         }
         return null;
@@ -5229,10 +5259,10 @@ var init = async () => {
       name: "exitInvalidDir"
     },
     {
-      type: () => isValidPkgName(state.targetDir) ? null : "text",
+      type: () => isValidPkgName(targetDir) ? null : "text",
       name: "packageName",
       message: reset("Package name:"),
-      initial: () => toValidPackageName(state.targetDir),
+      initial: () => toValidPackageName(targetDir),
       validate: (dir) => isValidPkgName(dir) || "Invalid package.json name"
     },
     {
@@ -5240,30 +5270,64 @@ var init = async () => {
       name: "template",
       message: reset("Select a template:"),
       initial: 0,
-      choices: templates.map((template) => ({
-        title: template.color(template.name),
-        value: template
-      }))
+      choices: templates.map(templateAsSelectOption)
     }
   ];
-  const result = await (0, import_prompts.default)(steps);
-  const root = import_path3.default.join(cwd, state.targetDir);
-  console.log(`
+  return (0, import_prompts.default)(steps).then((result) => {
+    var _a;
+    const root = import_path3.default.join(cwd, targetDir);
+    console.log(`
 Scaffolding project in ${root}...`);
-  import_fs2.default.mkdirSync(root);
-  const templateDir = import_path3.default.join(TEMPLATES_DIRECTORY, result.template.name);
-  import_fs2.default.readdirSync(templateDir).filter(isNotPackageJson).forEach((fileName) => copy(import_path3.default.join(templateDir, fileName), getTargetPath(root, fileName)));
-  const packageJson = Object.assign(require(import_path3.default.join(templateDir, "package.json")), {
-    name: result.packageName
-  });
-  write(getTargetPath(root, "package.json"), JSON.stringify(packageJson, null, 2));
-  const pkgManager = getPkgManagerFromUserAgent(process.env.npm_config_user_agent) ?? "npm";
-  console.log(green(`
+    import_fs2.default.mkdirSync(root);
+    const templateDir = import_path3.default.join(TEMPLATES_DIRECTORY, result.template.name);
+    import_fs2.default.readdirSync(templateDir).filter(isNotPackageJson).forEach((fileName) => copy(import_path3.default.join(templateDir, fileName), getTargetPath(root, fileName)));
+    const packageJson = Object.assign(require(import_path3.default.join(templateDir, "package.json")), {
+      name: result.packageName
+    });
+    write(getTargetPath(root, "package.json"), JSON.stringify(packageJson, null, 2));
+    const pkgManager = (_a = getPkgManagerFromUserAgent(process.env.npm_config_user_agent)) != null ? _a : "npm";
+    console.log(lightGreen(`
 Finished! Now run:
 `));
-  if (root !== cwd) {
-    console.log(`  cd ${import_path3.default.relative(cwd, root)}`);
-  }
-  console.log(installInstructionsByPkgManager(pkgManager));
-};
-init().catch(({ message }) => console.error(message));
+    if (root !== cwd) {
+      console.log(`  cd ${import_path3.default.relative(cwd, root)}`);
+    }
+    console.log(installInstructionsByPkgManager(pkgManager));
+  });
+}
+
+// src/prompts/start.ts
+var import_prompts2 = __toESM(require_prompts3());
+function start() {
+  const options2 = [
+    {
+      title: lightYellow("New project"),
+      value: "create"
+    },
+    {
+      title: lightGreen("Add feature"),
+      value: "add"
+    }
+  ];
+  const steps = [
+    {
+      type: "select",
+      name: "command",
+      message: "What would you like to do?",
+      choices: options2
+    }
+  ];
+  return (0, import_prompts2.default)(steps).then((result) => result.command);
+}
+
+// src/index.ts
+(() => __async(exports, null, function* () {
+  const handleCommand = (command) => {
+    const commandHandlers = {
+      add: create,
+      create
+    };
+    return commandHandlers[command]();
+  };
+  return start().then(handleCommand);
+}))().catch(handleError);

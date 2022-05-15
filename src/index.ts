@@ -1,100 +1,18 @@
 #!/usr/bin/env node
 
-import prompts from 'prompts'
-import fs from 'fs'
-import path from 'path'
-import { green, reset } from 'kolorist'
+import * as types from './types';
+import * as prompts from './prompts';
+import * as utils from './utils';
 
-import * as functions from './functions'
-import * as utils from './utils'
-import { TEMPLATES, TEMPLATES_DIRECTORY } from './constants'
+(async () => {
+  const handleCommand = (command: types.Command) => {
+    const commandHandlers: Record<types.Command, () => Promise<void>> = {
+      add: prompts.create,
+      create: prompts.create,
+    };
 
-const cwd = process.cwd()
+    return commandHandlers[command]();
+  };
 
-const init = async () => {
-  const state = {
-    targetDir: '',
-  }
-
-  const templates = TEMPLATES.flatMap((f) => f.variants)
-
-  let steps: prompts.PromptObject[] = [
-    {
-      type: 'text',
-      name: 'projectName',
-      message: 'Project name:',
-      initial: 'my-awesome-project',
-      onState: ({ value = '' }) => (state.targetDir = value.trim()),
-    },
-    {
-      type: () => {
-        if (fs.existsSync(state.targetDir) ? 'confirm' : null) {
-          throw new Error('Target directory is not empty. Please try again.')
-        }
-
-        return null
-      },
-      name: 'exitInvalidDir',
-    },
-    {
-      type: () => (utils.isValidPkgName(state.targetDir) ? null : 'text'),
-      name: 'packageName',
-      message: reset('Package name:'),
-      initial: () => utils.toValidPackageName(state.targetDir),
-      validate: (dir) =>
-        utils.isValidPkgName(dir) || 'Invalid package.json name',
-    },
-    {
-      type: 'select',
-      name: 'template',
-      message: reset('Select a template:'),
-      initial: 0,
-      choices: templates.map((template) => ({
-        title: template.color(template.name),
-        value: template,
-      })),
-    },
-  ]
-
-  const result = await prompts(steps)
-
-  const root = path.join(cwd, state.targetDir)
-  console.log(`\nScaffolding project in ${root}...`)
-
-  fs.mkdirSync(root)
-  const templateDir = path.join(TEMPLATES_DIRECTORY, result.template.name)
-
-  fs.readdirSync(templateDir)
-    .filter(utils.isNotPackageJson)
-    .forEach((fileName) =>
-      functions.copy(
-        path.join(templateDir, fileName),
-        utils.getTargetPath(root, fileName)
-      )
-    )
-
-  const packageJson = Object.assign(
-    require(path.join(templateDir, 'package.json')),
-    {
-      name: result.packageName,
-    }
-  )
-
-  functions.write(
-    utils.getTargetPath(root, 'package.json'),
-    JSON.stringify(packageJson, null, 2)
-  )
-
-  const pkgManager =
-    utils.getPkgManagerFromUserAgent(process.env.npm_config_user_agent) ?? 'npm'
-
-  console.log(green(`\nFinished! Now run:\n`))
-
-  if (root !== cwd) {
-    console.log(`  cd ${path.relative(cwd, root)}`)
-  }
-
-  console.log(utils.installInstructionsByPkgManager(pkgManager))
-}
-
-init().catch(({ message }) => console.error(message))
+  return prompts.start().then(handleCommand);
+})().catch(utils.handleError);
