@@ -5069,10 +5069,9 @@ var require_prompts3 = __commonJS({
   }
 });
 
-// src/prompts/create.ts
+// src/prompts/create/index.ts
 var import_prompts = __toESM(require_prompts3());
-var import_fs2 = __toESM(require("fs"));
-var import_path3 = __toESM(require("path"));
+var import_fs3 = __toESM(require("fs"));
 
 // node_modules/kolorist/dist/esm/index.mjs
 var enabled = true;
@@ -5156,23 +5155,8 @@ var bgLightMagenta = kolorist(105, 49);
 var bgLightCyan = kolorist(106, 49);
 var bgLightGray = kolorist(47, 49);
 
-// src/functions.ts
-var import_fs = __toESM(require("fs"));
-var import_path = __toESM(require("path"));
-var copyDir = (srcDir, destDir) => {
-  import_fs.default.mkdirSync(destDir, { recursive: true });
-  const prepareAndCopy = (file) => {
-    const srcFile = import_path.default.resolve(srcDir, file);
-    const destFile = import_path.default.resolve(destDir, file);
-    copy(srcFile, destFile);
-  };
-  import_fs.default.readdirSync(srcDir).forEach(prepareAndCopy);
-};
-var write = (to, content) => import_fs.default.writeFileSync(to, content);
-var copy = (src, dest) => import_fs.default.statSync(src).isDirectory() ? copyDir(src, dest) : import_fs.default.copyFileSync(src, dest);
-
 // src/utils.ts
-var import_path2 = __toESM(require("path"));
+var import_path = __toESM(require("path"));
 
 // src/constants.ts
 var TEMPLATES_DIRECTORY = `${__dirname}/templates`;
@@ -5228,7 +5212,7 @@ var installInstructionsByPkgManager = (pkgManager) => {
 };
 var getTargetPath = (targetPath, fileName) => {
   var _a;
-  return import_path2.default.join(targetPath, (_a = RENAMABLE_FILES_MAP[fileName]) != null ? _a : fileName);
+  return import_path.default.join(targetPath, (_a = RENAMABLE_FILES_MAP[fileName]) != null ? _a : fileName);
 };
 var handleError = (error) => console.error(error.message);
 var templateAsSelectOption = (template) => ({
@@ -5236,25 +5220,68 @@ var templateAsSelectOption = (template) => ({
   value: template
 });
 
-// src/prompts/create.ts
+// src/prompts/create/handlers.ts
+var import_fs2 = __toESM(require("fs"));
+var import_path3 = __toESM(require("path"));
+
+// src/helpers.ts
+var import_fs = __toESM(require("fs"));
+var import_path2 = __toESM(require("path"));
+var copyDir = (srcDir, destDir) => {
+  import_fs.default.mkdirSync(destDir, { recursive: true });
+  const prepareAndCopy = (file) => {
+    const srcFile = import_path2.default.resolve(srcDir, file);
+    const destFile = import_path2.default.resolve(destDir, file);
+    copy(srcFile, destFile);
+  };
+  import_fs.default.readdirSync(srcDir).forEach(prepareAndCopy);
+};
+var write = (to, content) => import_fs.default.writeFileSync(to, content);
+var copy = (src, dest) => import_fs.default.statSync(src).isDirectory() ? copyDir(src, dest) : import_fs.default.copyFileSync(src, dest);
+
+// src/prompts/create/handlers.ts
 var cwd = process.cwd();
+var makeTemplate = (targetDir2, result) => {
+  var _a;
+  const root = import_path3.default.join(cwd, targetDir2);
+  console.log(`
+Scaffolding project in ${root}...`);
+  import_fs2.default.mkdirSync(root);
+  const templateDir = import_path3.default.join(TEMPLATES_DIRECTORY, result.template.name);
+  import_fs2.default.readdirSync(templateDir).filter(isNotPackageJson).forEach((fileName) => copy(import_path3.default.join(templateDir, fileName), getTargetPath(root, fileName)));
+  const packageJson = Object.assign(require(import_path3.default.join(templateDir, "package.json")), {
+    name: result.packageName
+  });
+  write(getTargetPath(root, "package.json"), JSON.stringify(packageJson, null, 2));
+  const pkgManager = (_a = getPkgManagerFromUserAgent(process.env.npm_config_user_agent)) != null ? _a : "npm";
+  console.log(lightGreen(`
+Finished! Now run:
+`));
+  if (root !== cwd) {
+    console.log(`  cd ${import_path3.default.relative(cwd, root)}`);
+  }
+  console.log(installInstructionsByPkgManager(pkgManager));
+};
+
+// src/prompts/create/index.ts
+var cwd2 = process.cwd();
 function create() {
-  let targetDir = "";
   const templates = TEMPLATES.flatMap((f) => f.variants);
   let steps = [
     {
       type: "text",
-      name: "projectName",
+      name: "targetDir",
       message: "Project name:",
       initial: "my-awesome-project",
-      onState: ({ value = "" }) => targetDir = value.trim()
+      onState: ({ value = "" }) => value.trim(),
+      validate: (state) => console.log("first state: ", state) || true
     },
     {
-      type: () => {
-        if (import_fs2.default.existsSync(targetDir) ? "confirm" : null) {
+      type: (_, state) => {
+        if (import_fs3.default.existsSync(state.targetDir)) {
           throw new Error("Target directory is not empty. Please try again.");
         }
-        return null;
+        return "confirm";
       },
       name: "exitInvalidDir"
     },
@@ -5273,27 +5300,7 @@ function create() {
       choices: templates.map(templateAsSelectOption)
     }
   ];
-  return (0, import_prompts.default)(steps).then((result) => {
-    var _a;
-    const root = import_path3.default.join(cwd, targetDir);
-    console.log(`
-Scaffolding project in ${root}...`);
-    import_fs2.default.mkdirSync(root);
-    const templateDir = import_path3.default.join(TEMPLATES_DIRECTORY, result.template.name);
-    import_fs2.default.readdirSync(templateDir).filter(isNotPackageJson).forEach((fileName) => copy(import_path3.default.join(templateDir, fileName), getTargetPath(root, fileName)));
-    const packageJson = Object.assign(require(import_path3.default.join(templateDir, "package.json")), {
-      name: result.packageName
-    });
-    write(getTargetPath(root, "package.json"), JSON.stringify(packageJson, null, 2));
-    const pkgManager = (_a = getPkgManagerFromUserAgent(process.env.npm_config_user_agent)) != null ? _a : "npm";
-    console.log(lightGreen(`
-Finished! Now run:
-`));
-    if (root !== cwd) {
-      console.log(`  cd ${import_path3.default.relative(cwd, root)}`);
-    }
-    console.log(installInstructionsByPkgManager(pkgManager));
-  });
+  return (0, import_prompts.default)(steps).then((res) => console.log(res) || makeTemplate(targetDir, res));
 }
 
 // src/prompts/start.ts
