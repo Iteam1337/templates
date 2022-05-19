@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/Iteam1337/templates/compare/v1.5.1...v1.5.2) (2022-05-19)
+
+
+### Bug Fixes
+
+* **react:** add missing dependency autoprefixer ([#43](https://github.com/Iteam1337/templates/issues/43)) ([80748f4](https://github.com/Iteam1337/templates/commit/80748f42ddc9b5f6212cbe173ddc2b8a72828001))
+
 ## [1.5.1](https://github.com/Iteam1337/templates/compare/v1.5.0...v1.5.1) (2022-04-26)
 
 
