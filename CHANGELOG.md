@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/Iteam1337/templates/compare/v1.5.2...v1.5.3) (2022-06-03)
+
+
+### Reverts
+
+* Revert "chore(deps): update dependency npm to 8.11.0 [security] (#46)" (#47) ([d62ca0b](https://github.com/Iteam1337/templates/commit/d62ca0bc7e8f55d2cc18b87f6abf39582798b3db)), closes [#46](https://github.com/Iteam1337/templates/issues/46) [#47](https://github.com/Iteam1337/templates/issues/47)
+
 ## [1.5.2](https://github.com/Iteam1337/templates/compare/v1.5.1...v1.5.2) (2022-05-19)
 
 
