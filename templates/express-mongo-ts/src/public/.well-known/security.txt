@@ -1,0 +1,5 @@
+# Placeholder! Generate a new one @ https://securitytxt.org/
+
+Contact: mailto:security@example.com
+Contact: https://customerservice.example.com
+Expires: 2023-07-12T10:00:00.000Z
