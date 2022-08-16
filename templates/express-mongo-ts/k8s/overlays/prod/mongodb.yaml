@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mongodb-ingress
+spec:
+  tls:
+    - hosts:
+        - mongodb.example.iteam.se # TODO: CHANGE ME!
+      secretName: express-mongo-ts-prod-tls # TODO: CHANGE ME!
+  rules:
+    - host: mongodb.example.iteam.se # TODO: CHANGE ME!
+      http:
+        paths:
+          - backend:
+              serviceName: mongodb
+              servicePort: 5601

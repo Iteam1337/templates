@@ -1,0 +1,28 @@
+apiVersion: skaffold/v2beta28
+kind: Config
+metadata:
+  name: express-mongo-ts # TODO: CHANGE ME!
+build:
+  artifacts:
+  - image: iteam1337/templates-backend # TODO: CHANGE ME!
+    context: packages/backend
+    # docker:
+    #   dockerfile: Dockerfile
+deploy:
+  kustomize:
+    paths:
+    - k8s/base
+  statusCheckDeadlineSeconds: 600
+profiles:
+- name: prod
+  activation:
+    - env: GITHUB_REF_SLUG=main
+  deploy:
+    kustomize:
+      paths:
+      - k8s/overlays/prod
+- name: staging
+  deploy:
+    kustomize:
+      paths:
+      - k8s/overlays/staging

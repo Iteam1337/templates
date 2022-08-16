@@ -20,6 +20,7 @@ npm install
 
 - Edit src/public/robots.txt
 - Edit src/public/.well-known/security.txt
+- Edit all matching `git grep '# TODO: CHANGE ME'`
 
 ## Recommended VSCode extensions
 
@@ -32,12 +33,17 @@ This template comes with a basic setup of Github Actions to lint and test code o
 
 ## TODO:
 
-- [ ] Install mongoose/mongdb
-- [ ] Setup logging infra
+- [x] Setup Express
+- [x] Setup CORS
+- [x] Setup mongoose/mongdb
+- [x] Setup example API endpoint
+- [x] Setup common test infra around mongodb to get data isolation for each test
 - [ ] Setup security headers?
-- [ ] Setup example API endpoint
-- [ ] Setup common test infra around mongodb to get data isolation for each test
+- [ ] Look into mongodb/js ORM:s
+- [ ] Look into api-swagger-docs-mapper
+- [ ] Setup logging infra
 - [ ] Setup Docker build
 - [ ] Setup Github Actions CI/CD
 - [ ] Setup Kubernetes deployment
+- [ ] Use Kubernetes manifests for dependencies
 - [ ] Update Readme

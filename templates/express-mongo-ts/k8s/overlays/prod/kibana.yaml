@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kibana-ingress
+spec:
+  tls:
+    - hosts:
+        - kibana.example.iteam.se # TODO: CHANGE ME!
+      secretName: express-mongo-ts-prod-tls # TODO: CHANGE ME!
+  rules:
+    - host: kibana.example.iteam.se  # TODO: CHANGE ME!
+      http:
+        paths:
+          - backend:
+              serviceName: kibana
+              servicePort: 5601
