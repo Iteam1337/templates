@@ -5,11 +5,11 @@ This repository contains Iteam project templates to scaffold new projects and a 
 ## How to use
 
 1. In your terminal, run:
-
 ```sh
 npm init @iteam/templates@latest
 ```
-
+2. You will be presented with the templates available (currently koa-typescript, react-typescript, react and vite)
+3. When you choose a template, a sub-directory with a new project will be created.
 
 ### How to contribute
 
