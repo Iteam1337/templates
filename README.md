@@ -4,11 +4,12 @@ This repository contains Iteam project templates to scaffold new projects and a 
 
 ## How to use
 
-In your terminal, run:
+1. In your terminal, run:
 
 ```sh
 npm init @iteam/templates@latest
 ```
+
 
 ### How to contribute
 
