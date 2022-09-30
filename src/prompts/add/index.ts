@@ -1,12 +1,10 @@
 import p from 'prompts';
-import fs from 'fs';
 import { reset } from 'kolorist';
 
 import * as utils from '../../utils';
 import { TEMPLATES } from '../../constants';
-import { makeTemplate } from './handlers';
 
-export const create = () => p(steps).then(makeTemplate);
+export const add = () => p(steps).then(console.log);
 
 const templatesAsSelectOptions = TEMPLATES.flatMap((f) => f.variants).map(
   utils.templateAsSelectOption
