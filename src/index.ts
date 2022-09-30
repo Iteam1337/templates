@@ -6,11 +6,11 @@ import * as utils from './utils';
 
 const handleCommand = (command: types.Command) => {
   const commandHandlers: Record<types.Command, () => Promise<void>> = {
-    add: prompts.create,
+    add: prompts.add,
     create: prompts.create,
   };
 
   return commandHandlers[command]();
 };
 
-(() => prompts.start().then(handleCommand))().catch(utils.handleError);
+prompts.start().then(handleCommand).catch(utils.handleError);

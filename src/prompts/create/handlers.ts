@@ -1,18 +1,17 @@
 import p from 'prompts';
 import fs from 'fs';
 import path from 'path';
-import { lightYellow, lightGreen, reset } from 'kolorist';
+import { lightGreen } from 'kolorist';
 
 import * as helpers from '../../helpers';
 import * as utils from '../../utils';
 
-import { TEMPLATES, TEMPLATES_DIRECTORY } from '../../constants';
-import * as types from 'src/types';
+import { TEMPLATES_DIRECTORY } from '../../constants';
 
 const cwd = process.cwd();
 
-export const makeTemplate = (targetDir: string, result: p.Answers<string>) => {
-  const root = path.join(cwd, targetDir);
+export const makeTemplate = (result: p.Answers<string>) => {
+  const root = path.join(cwd, result.targetDir);
 
   console.log(`\nScaffolding project in ${root}...`);
   fs.mkdirSync(root);
@@ -31,7 +30,7 @@ export const makeTemplate = (targetDir: string, result: p.Answers<string>) => {
   const packageJson = Object.assign(
     require(path.join(templateDir, 'package.json')),
     {
-      name: result.packageName,
+      name: result.targetDir,
     }
   );
 
