@@ -3,7 +3,7 @@ import path from 'path';
 import { RENAMABLE_FILES_MAP } from './constants';
 import * as types from './types';
 
-export const isValidPkgName = (name: string) =>
+export const isValidProjectName = (name: string) =>
   /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(name);
 
 export const getPkgManagerFromUserAgent = (userAgent?: string) =>
@@ -11,7 +11,7 @@ export const getPkgManagerFromUserAgent = (userAgent?: string) =>
 
 export const isNotPackageJson = (name: string) => name !== 'package.json';
 
-export const toValidPackageName = (name: string) =>
+export const toValidProjectName = (name: string) =>
   name
     .trim()
     .toLowerCase()
@@ -22,8 +22,8 @@ export const toValidPackageName = (name: string) =>
 export const validateProjectName = (val: string) =>
   fs.existsSync(val)
     ? 'Target directory already exists'
-      ? !isValidPkgName(val)
-      : 'Not a valid package name, try a different one'
+    : !isValidProjectName(val)
+    ? `Not a valid package name, try ${toValidProjectName(val)}`
     : true;
 
 export const installInstructionsByPkgManager = (pkgManager: string) => {
