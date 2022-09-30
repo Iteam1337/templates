@@ -1,4 +1,5 @@
 import p from 'prompts';
+
 export type Template = {
   name: string;
   color: (color: string | number) => string;

@@ -6,7 +6,7 @@ import { lightGreen } from 'kolorist';
 import * as helpers from '../../helpers';
 import * as utils from '../../utils';
 
-import { TEMPLATES_DIRECTORY } from '../../constants';
+import { TEMPLATES_DIRECTORY } from './constants';
 
 const cwd = process.cwd();
 

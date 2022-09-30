@@ -1,9 +1,8 @@
 import p from 'prompts';
-import fs from 'fs';
 import { reset } from 'kolorist';
 
 import * as utils from '../../utils';
-import { TEMPLATES } from '../../constants';
+import { TEMPLATES } from './constants';
 import { makeTemplate } from './handlers';
 
 export const create = () => p(steps).then(makeTemplate);
