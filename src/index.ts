@@ -4,15 +4,13 @@ import * as types from './types';
 import * as prompts from './prompts';
 import * as utils from './utils';
 
-(async () => {
-  const handleCommand = (command: types.Command) => {
-    const commandHandlers: Record<types.Command, () => Promise<void>> = {
-      add: prompts.create,
-      create: prompts.create,
-    };
-
-    return commandHandlers[command]();
+const handleCommand = (command: types.Command) => {
+  const commandHandlers: Record<types.Command, () => Promise<void>> = {
+    add: prompts.create,
+    create: prompts.create,
   };
 
-  return prompts.start().then(handleCommand);
-})().catch(utils.handleError);
+  return commandHandlers[command]();
+};
+
+(() => prompts.start().then(handleCommand))().catch(utils.handleError);

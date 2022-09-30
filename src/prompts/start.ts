@@ -10,7 +10,7 @@ export function start() {
       value: 'create',
     },
     {
-      title: lightGreen('Add feature'),
+      title: lightGreen('Add a feature to an existing project'),
       value: 'add',
     },
   ];
