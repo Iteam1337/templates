@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import pinoLogger from 'koa-pino-logger';
+import cors from '@koa/cors';
 
 import exampleApi from './example-api';
 import errorHandler from './middlewares/error-handler';
@@ -8,6 +9,7 @@ import errorHandler from './middlewares/error-handler';
 const app = new Koa();
 const logger = pinoLogger();
 
+app.use(cors());
 app.use(logger);
 
 app.on('error', (err) => {
