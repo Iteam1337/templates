@@ -25,32 +25,32 @@ var require_kleur = __commonJS({
     var { FORCE_COLOR, NODE_DISABLE_COLORS, TERM } = process.env;
     var $ = {
       enabled: !NODE_DISABLE_COLORS && TERM !== "dumb" && FORCE_COLOR !== "0",
-      reset: init2(0, 0),
-      bold: init2(1, 22),
-      dim: init2(2, 22),
-      italic: init2(3, 23),
-      underline: init2(4, 24),
-      inverse: init2(7, 27),
-      hidden: init2(8, 28),
-      strikethrough: init2(9, 29),
-      black: init2(30, 39),
-      red: init2(31, 39),
-      green: init2(32, 39),
-      yellow: init2(33, 39),
-      blue: init2(34, 39),
-      magenta: init2(35, 39),
-      cyan: init2(36, 39),
-      white: init2(37, 39),
-      gray: init2(90, 39),
-      grey: init2(90, 39),
-      bgBlack: init2(40, 49),
-      bgRed: init2(41, 49),
-      bgGreen: init2(42, 49),
-      bgYellow: init2(43, 49),
-      bgBlue: init2(44, 49),
-      bgMagenta: init2(45, 49),
-      bgCyan: init2(46, 49),
-      bgWhite: init2(47, 49)
+      reset: init(0, 0),
+      bold: init(1, 22),
+      dim: init(2, 22),
+      italic: init(3, 23),
+      underline: init(4, 24),
+      inverse: init(7, 27),
+      hidden: init(8, 28),
+      strikethrough: init(9, 29),
+      black: init(30, 39),
+      red: init(31, 39),
+      green: init(32, 39),
+      yellow: init(33, 39),
+      blue: init(34, 39),
+      magenta: init(35, 39),
+      cyan: init(36, 39),
+      white: init(37, 39),
+      gray: init(90, 39),
+      grey: init(90, 39),
+      bgBlack: init(40, 49),
+      bgRed: init(41, 49),
+      bgGreen: init(42, 49),
+      bgYellow: init(43, 49),
+      bgBlue: init(44, 49),
+      bgMagenta: init(45, 49),
+      bgCyan: init(46, 49),
+      bgWhite: init(47, 49)
     };
     function run(arr, str) {
       let i = 0, tmp, beg = "", end = "";
@@ -94,7 +94,7 @@ var require_kleur = __commonJS({
       ctx.bgWhite = $.bgWhite.bind(ctx);
       return ctx;
     }
-    function init2(open, close) {
+    function init(open, close) {
       let blk = {
         open: `\x1B[${open}m`,
         close: `\x1B[${close}m`,
@@ -1408,17 +1408,17 @@ var require_date = __commonJS({
           this._date.setTime(date.getTime());
       }
       set mask(mask) {
-        let result;
+        let result2;
         this.parts = [];
-        while (result = regex.exec(mask)) {
-          let match = result.shift();
-          let idx = result.findIndex((gr) => gr != null);
+        while (result2 = regex.exec(mask)) {
+          let match = result2.shift();
+          let idx = result2.findIndex((gr) => gr != null);
           this.parts.push(idx in regexGroups ? regexGroups[idx]({
-            token: result[idx] || match,
+            token: result2[idx] || match,
             date: this.date,
             parts: this.parts,
             locales: this.locales
-          }) : result[idx] || match);
+          }) : result2[idx] || match);
         }
         let parts = this.parts.reduce((arr, i) => {
           if (typeof i === "string" && typeof arr[arr.length - 1] === "string")
@@ -1437,7 +1437,7 @@ var require_date = __commonJS({
         this.fire();
       }
       reset() {
-        this.moveCursor(this.parts.findIndex((p) => p instanceof DatePart));
+        this.moveCursor(this.parts.findIndex((p4) => p4 instanceof DatePart));
         this.fire();
         this.render();
       }
@@ -1525,7 +1525,7 @@ var require_date = __commonJS({
         else
           this.out.write(clear(this.outputText, this.out.columns));
         super.render();
-        this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(false), this.parts.reduce((arr, p, idx) => arr.concat(idx === this.cursor && !this.done ? color.cyan().underline(p.toString()) : p), []).join("")].join(" ");
+        this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(false), this.parts.reduce((arr, p4, idx) => arr.concat(idx === this.cursor && !this.done ? color.cyan().underline(p4.toString()) : p4), []).join("")].join(" ");
         if (this.error) {
           this.outputText += this.errorMsg.split("\n").reduce((a, l, i) => a + `
 ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
@@ -1941,27 +1941,27 @@ Instructions:
         }
         return prefix + title + color.gray(desc || "");
       }
-      paginateOptions(options2) {
-        if (options2.length === 0) {
+      paginateOptions(options3) {
+        if (options3.length === 0) {
           return color.red("No matches for this query.");
         }
-        let _entriesToDisplay = entriesToDisplay(this.cursor, options2.length, this.optionsPerPage), startIndex = _entriesToDisplay.startIndex, endIndex = _entriesToDisplay.endIndex;
+        let _entriesToDisplay = entriesToDisplay(this.cursor, options3.length, this.optionsPerPage), startIndex = _entriesToDisplay.startIndex, endIndex = _entriesToDisplay.endIndex;
         let prefix, styledOptions = [];
         for (let i = startIndex; i < endIndex; i++) {
           if (i === startIndex && startIndex > 0) {
             prefix = figures.arrowUp;
-          } else if (i === endIndex - 1 && endIndex < options2.length) {
+          } else if (i === endIndex - 1 && endIndex < options3.length) {
             prefix = figures.arrowDown;
           } else {
             prefix = " ";
           }
-          styledOptions.push(this.renderOption(this.cursor, options2[i], i, prefix));
+          styledOptions.push(this.renderOption(this.cursor, options3[i], i, prefix));
         }
         return "\n" + styledOptions.join("\n");
       }
-      renderOptions(options2) {
+      renderOptions(options3) {
         if (!this.done) {
-          return this.paginateOptions(options2);
+          return this.paginateOptions(options3);
         }
         return "";
       }
@@ -2096,9 +2096,9 @@ var require_autocomplete = __commonJS({
       complete(cb) {
         var _this = this;
         return _asyncToGenerator(function* () {
-          const p = _this.completing = _this.suggest(_this.input, _this.choices);
-          const suggestions = yield p;
-          if (_this.completing !== p)
+          const p4 = _this.completing = _this.suggest(_this.input, _this.choices);
+          const suggestions = yield p4;
+          if (_this.completing !== p4)
             return;
           _this.suggestions = suggestions.map((s, i, arr) => ({
             title: getTitle(arr, i),
@@ -2529,14 +2529,14 @@ var require_prompts = __commonJS({
     var noop = (v) => v;
     function toPrompt(type, args, opts = {}) {
       return new Promise((res, rej) => {
-        const p = new el[type](args);
+        const p4 = new el[type](args);
         const onAbort = opts.onAbort || noop;
         const onSubmit = opts.onSubmit || noop;
         const onExit = opts.onExit || noop;
-        p.on("state", args.onState || noop);
-        p.on("submit", (x) => res(onSubmit(x)));
-        p.on("exit", (x) => res(onExit(x)));
-        p.on("abort", (x) => rej(onAbort(x)));
+        p4.on("state", args.onState || noop);
+        p4.on("submit", (x) => res(onSubmit(x)));
+        p4.on("exit", (x) => res(onExit(x)));
+        p4.on("abort", (x) => rej(onAbort(x)));
       });
     }
     $.text = (args) => toPrompt("TextPrompt", args);
@@ -2714,7 +2714,7 @@ var require_dist = __commonJS({
         });
       };
     }
-    var prompts2 = require_prompts();
+    var prompts = require_prompts();
     var passOn = ["suggest", "format", "onState", "validate", "onRender", "type"];
     var noop = () => {
     };
@@ -2767,7 +2767,7 @@ var require_dist = __commonJS({
             var _question2 = question;
             name = _question2.name;
             type = _question2.type;
-            if (prompts2[type] === void 0) {
+            if (prompts[type] === void 0) {
               throw new Error(`prompt type (${type}) is not defined`);
             }
             if (override2[question.name] !== void 0) {
@@ -2778,7 +2778,7 @@ var require_dist = __commonJS({
               }
             }
             try {
-              answer = prompt._injected ? getInjectedAnswer(prompt._injected, question.initial) : yield prompts2[type](question);
+              answer = prompt._injected ? getInjectedAnswer(prompt._injected, question.initial) : yield prompts[type](question);
               answers[name] = answer = yield getFormattedAnswer(question, answer, true);
               quit = yield onSubmit(question, answer, answers);
             } catch (err) {
@@ -2811,7 +2811,7 @@ var require_dist = __commonJS({
     }
     module2.exports = Object.assign(prompt, {
       prompt,
-      prompts: prompts2,
+      prompts,
       inject,
       override
     });
@@ -3874,12 +3874,12 @@ var require_date2 = __commonJS({
           this._date.setTime(date.getTime());
       }
       set mask(mask) {
-        let result;
+        let result2;
         this.parts = [];
-        while (result = regex.exec(mask)) {
-          let match = result.shift();
-          let idx = result.findIndex((gr) => gr != null);
-          this.parts.push(idx in regexGroups ? regexGroups[idx]({ token: result[idx] || match, date: this.date, parts: this.parts, locales: this.locales }) : result[idx] || match);
+        while (result2 = regex.exec(mask)) {
+          let match = result2.shift();
+          let idx = result2.findIndex((gr) => gr != null);
+          this.parts.push(idx in regexGroups ? regexGroups[idx]({ token: result2[idx] || match, date: this.date, parts: this.parts, locales: this.locales }) : result2[idx] || match);
         }
         let parts = this.parts.reduce((arr, i) => {
           if (typeof i === "string" && typeof arr[arr.length - 1] === "string")
@@ -3898,7 +3898,7 @@ var require_date2 = __commonJS({
         this.fire();
       }
       reset() {
-        this.moveCursor(this.parts.findIndex((p) => p instanceof DatePart));
+        this.moveCursor(this.parts.findIndex((p4) => p4 instanceof DatePart));
         this.fire();
         this.render();
       }
@@ -3984,7 +3984,7 @@ var require_date2 = __commonJS({
           style.symbol(this.done, this.aborted),
           color.bold(this.msg),
           style.delimiter(false),
-          this.parts.reduce((arr, p, idx) => arr.concat(idx === this.cursor && !this.done ? color.cyan().underline(p.toString()) : p), []).join("")
+          this.parts.reduce((arr, p4, idx) => arr.concat(idx === this.cursor && !this.done ? color.cyan().underline(p4.toString()) : p4), []).join("")
         ].join(" ");
         if (this.error) {
           this.outputText += this.errorMsg.split("\n").reduce((a, l, i) => a + `
@@ -4352,27 +4352,27 @@ Instructions:
         }
         return prefix + title + color.gray(desc || "");
       }
-      paginateOptions(options2) {
-        if (options2.length === 0) {
+      paginateOptions(options3) {
+        if (options3.length === 0) {
           return color.red("No matches for this query.");
         }
-        let { startIndex, endIndex } = entriesToDisplay(this.cursor, options2.length, this.optionsPerPage);
+        let { startIndex, endIndex } = entriesToDisplay(this.cursor, options3.length, this.optionsPerPage);
         let prefix, styledOptions = [];
         for (let i = startIndex; i < endIndex; i++) {
           if (i === startIndex && startIndex > 0) {
             prefix = figures.arrowUp;
-          } else if (i === endIndex - 1 && endIndex < options2.length) {
+          } else if (i === endIndex - 1 && endIndex < options3.length) {
             prefix = figures.arrowDown;
           } else {
             prefix = " ";
           }
-          styledOptions.push(this.renderOption(this.cursor, options2[i], i, prefix));
+          styledOptions.push(this.renderOption(this.cursor, options3[i], i, prefix));
         }
         return "\n" + styledOptions.join("\n");
       }
-      renderOptions(options2) {
+      renderOptions(options3) {
         if (!this.done) {
-          return this.paginateOptions(options2);
+          return this.paginateOptions(options3);
         }
         return "";
       }
@@ -4468,9 +4468,9 @@ var require_autocomplete2 = __commonJS({
         this.fire();
       }
       async complete(cb) {
-        const p = this.completing = this.suggest(this.input, this.choices);
-        const suggestions = await p;
-        if (this.completing !== p)
+        const p4 = this.completing = this.suggest(this.input, this.choices);
+        const suggestions = await p4;
+        if (this.completing !== p4)
           return;
         this.suggestions = suggestions.map((s, i, arr) => ({ title: getTitle(arr, i), value: getVal(arr, i), description: s.description }));
         this.completing = false;
@@ -4899,14 +4899,14 @@ var require_prompts2 = __commonJS({
     var noop = (v) => v;
     function toPrompt(type, args, opts = {}) {
       return new Promise((res, rej) => {
-        const p = new el[type](args);
+        const p4 = new el[type](args);
         const onAbort = opts.onAbort || noop;
         const onSubmit = opts.onSubmit || noop;
         const onExit = opts.onExit || noop;
-        p.on("state", args.onState || noop);
-        p.on("submit", (x) => res(onSubmit(x)));
-        p.on("exit", (x) => res(onExit(x)));
-        p.on("abort", (x) => rej(onAbort(x)));
+        p4.on("state", args.onState || noop);
+        p4.on("submit", (x) => res(onSubmit(x)));
+        p4.on("exit", (x) => res(onExit(x)));
+        p4.on("abort", (x) => rej(onAbort(x)));
       });
     }
     $.text = (args) => toPrompt("TextPrompt", args);
@@ -4958,7 +4958,7 @@ var require_prompts2 = __commonJS({
 var require_lib = __commonJS({
   "node_modules/prompts/lib/index.js"(exports, module2) {
     "use strict";
-    var prompts2 = require_prompts2();
+    var prompts = require_prompts2();
     var passOn = ["suggest", "format", "onState", "validate", "onRender", "type"];
     var noop = () => {
     };
@@ -4992,7 +4992,7 @@ var require_lib = __commonJS({
           throw new Error("prompt message is required");
         }
         ({ name, type } = question);
-        if (prompts2[type] === void 0) {
+        if (prompts[type] === void 0) {
           throw new Error(`prompt type (${type}) is not defined`);
         }
         if (override2[question.name] !== void 0) {
@@ -5003,7 +5003,7 @@ var require_lib = __commonJS({
           }
         }
         try {
-          answer = prompt._injected ? getInjectedAnswer(prompt._injected, question.initial) : await prompts2[type](question);
+          answer = prompt._injected ? getInjectedAnswer(prompt._injected, question.initial) : await prompts[type](question);
           answers[name] = answer = await getFormattedAnswer(question, answer, true);
           quit = await onSubmit(question, answer, answers);
         } catch (err) {
@@ -5027,7 +5027,7 @@ var require_lib = __commonJS({
     function override(answers) {
       prompt._override = Object.assign({}, answers);
     }
-    module2.exports = Object.assign(prompt, { prompt, prompts: prompts2, inject, override });
+    module2.exports = Object.assign(prompt, { prompt, prompts, inject, override });
   }
 });
 
@@ -5048,11 +5048,6 @@ var require_prompts3 = __commonJS({
     module2.exports = isNodeLT("8.6.0") ? require_dist() : require_lib();
   }
 });
-
-// src/index.ts
-var import_prompts = __toESM(require_prompts3());
-var import_fs2 = __toESM(require("fs"));
-var import_path3 = __toESM(require("path"));
 
 // node_modules/kolorist/dist/esm/index.mjs
 var enabled = true;
@@ -5087,8 +5082,8 @@ var options = {
   enabled,
   supportLevel
 };
-function kolorist(start, end, level = 1) {
-  const open = `\x1B[${start}m`;
+function kolorist(start2, end, level = 1) {
+  const open = `\x1B[${start2}m`;
   const close = `\x1B[${end}m`;
   const regex = new RegExp(`\\x1b\\[${end}m`, "g");
   return (str) => {
@@ -5136,129 +5131,116 @@ var bgLightMagenta = kolorist(105, 49);
 var bgLightCyan = kolorist(106, 49);
 var bgLightGray = kolorist(47, 49);
 
-// src/functions.ts
-var import_fs = __toESM(require("fs"));
-var import_path = __toESM(require("path"));
-var copyDir = (srcDir, destDir) => {
-  import_fs.default.mkdirSync(destDir, { recursive: true });
-  const prepareAndCopy = (file) => {
-    const srcFile = import_path.default.resolve(srcDir, file);
-    const destFile = import_path.default.resolve(destDir, file);
-    copy(srcFile, destFile);
-  };
-  import_fs.default.readdirSync(srcDir).forEach(prepareAndCopy);
-};
-var write = (to, content) => import_fs.default.writeFileSync(to, content);
-var copy = (src, dest) => import_fs.default.statSync(src).isDirectory() ? copyDir(src, dest) : import_fs.default.copyFileSync(src, dest);
+// src/prompts/add/index.ts
+var import_prompts = __toESM(require_prompts3());
 
 // src/utils.ts
-var import_path2 = __toESM(require("path"));
+var import_fs = __toESM(require("fs"));
+var import_path = __toESM(require("path"));
 
 // src/constants.ts
-var TEMPLATES_DIRECTORY = `${__dirname}/templates`;
 var RENAMABLE_FILES_MAP = {
   _gitignore: ".gitignore"
 };
-var TEMPLATES = [
-  {
-    name: "react",
-    color: yellow,
-    variants: [
-      {
-        color: yellow,
-        name: "react",
-        display: "React JavaScript"
-      },
-      {
-        color: blue,
-        name: "react-ts",
-        display: "React TypeScript"
-      },
-      {
-        color: red,
-        name: "vite-vanilla",
-        display: "JavaScript"
-      },
-      {
-        color: green,
-        name: "koa-ts",
-        display: "Koa Typescript"
-      }
-    ]
-  }
-];
 
 // src/utils.ts
-var isValidPkgName = (name) => /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(name);
-var getPkgManagerFromUserAgent = (userAgent) => userAgent?.split(" ")[0]?.split("/")[0];
+var isValidProjectName = (name) => /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(name);
+var getPkgManagerFromUserAgent = (userAgent) => {
+  var _a;
+  return (_a = userAgent == null ? void 0 : userAgent.split(" ")[0]) == null ? void 0 : _a.split("/")[0];
+};
 var isNotPackageJson = (name) => name !== "package.json";
-var toValidPackageName = (name) => name.trim().toLowerCase().replace(/\s+/g, "-").replace(/^[._]/, "").replace(/[^a-z0-9-~]+/g, "-");
+var toValidProjectName = (name) => name.trim().toLowerCase().replace(/\s+/g, "-").replace(/^[._]/, "").replace(/[^a-z0-9-~]+/g, "-");
+var validateProjectName = (val) => import_fs.default.existsSync(val) ? "Target directory already exists" : !isValidProjectName(val) ? `Not a valid package name, try ${toValidProjectName(val)}` : true;
 var installInstructionsByPkgManager = (pkgManager) => {
+  var _a;
   const instructions = {
     yarn: `  yarn 
    yarn dev`,
     default: `  ${pkgManager} install 
   ${pkgManager} run dev`
   };
-  return instructions[pkgManager] ?? instructions.default;
+  return (_a = instructions[pkgManager]) != null ? _a : instructions.default;
 };
-var getTargetPath = (targetPath, fileName) => import_path2.default.join(targetPath, RENAMABLE_FILES_MAP[fileName] ?? fileName);
+var getTargetPath = (targetPath, fileName) => {
+  var _a;
+  return import_path.default.join(targetPath, (_a = RENAMABLE_FILES_MAP[fileName]) != null ? _a : fileName);
+};
+var handleError = (error) => console.error(error.message);
+var templateAsSelectOption = (template) => ({
+  title: template.color(template.name),
+  value: template
+});
 
-// src/index.ts
-var cwd = process.cwd();
-var init = async () => {
-  const state = {
-    targetDir: ""
+// src/prompts/create/constants.ts
+var PROJECT_TEMPLATES_DIRECTORY2 = `${__dirname}/templates`;
+var PROJECT_TEMPLATES = [
+  {
+    color: yellow,
+    name: "react",
+    label: "React JavaScript"
+  },
+  {
+    color: blue,
+    name: "react-ts",
+    label: "React TypeScript"
+  },
+  {
+    color: red,
+    name: "vite-vanilla",
+    label: "Vite JavaScript"
+  },
+  {
+    color: green,
+    name: "koa-ts",
+    label: "Koa Typescript"
+  }
+];
+var UTIL_TEMPLATES = [
+  {
+    color: yellow,
+    name: "gh-actions",
+    label: "Github Actions (on PR)"
+  }
+];
+
+// src/prompts/add/handlers/gh-actions.ts
+var import_fs3 = __toESM(require("fs"));
+var import_path3 = __toESM(require("path"));
+
+// src/helpers.ts
+var import_fs2 = __toESM(require("fs"));
+var import_path2 = __toESM(require("path"));
+var copyDir = (srcDir, destDir) => {
+  import_fs2.default.mkdirSync(destDir, { recursive: true });
+  const prepareAndCopy = (file) => {
+    const srcFile = import_path2.default.resolve(srcDir, file);
+    const destFile = import_path2.default.resolve(destDir, file);
+    copy(srcFile, destFile);
   };
-  const templates = TEMPLATES.flatMap((f) => f.variants);
-  let steps = [
-    {
-      type: "text",
-      name: "projectName",
-      message: "Project name:",
-      initial: "my-awesome-project",
-      onState: ({ value = "" }) => state.targetDir = value.trim()
-    },
-    {
-      type: () => {
-        if (import_fs2.default.existsSync(state.targetDir) ? "confirm" : null) {
-          throw new Error("Target directory is not empty. Please try again.");
-        }
-        return null;
-      },
-      name: "exitInvalidDir"
-    },
-    {
-      type: () => isValidPkgName(state.targetDir) ? null : "text",
-      name: "packageName",
-      message: reset("Package name:"),
-      initial: () => toValidPackageName(state.targetDir),
-      validate: (dir) => isValidPkgName(dir) || "Invalid package.json name"
-    },
-    {
-      type: "select",
-      name: "template",
-      message: reset("Select a template:"),
-      initial: 0,
-      choices: templates.map((template) => ({
-        title: template.color(template.name),
-        value: template
-      }))
-    }
-  ];
-  const result = await (0, import_prompts.default)(steps);
-  const root = import_path3.default.join(cwd, state.targetDir);
+  import_fs2.default.readdirSync(srcDir).forEach(prepareAndCopy);
+};
+var write = (to, content) => import_fs2.default.writeFileSync(to, content);
+var copy = (src, dest) => import_fs2.default.statSync(src).isDirectory() ? copyDir(src, dest) : import_fs2.default.copyFileSync(src, dest);
+
+// src/prompts/add/handlers/gh-actions.ts
+var cwd = process.cwd();
+var ghActions = () => {
+  var _a;
+  const root = import_path3.default.join(cwd);
   console.log(`
-Scaffolding project in ${root}...`);
-  import_fs2.default.mkdirSync(root);
-  const templateDir = import_path3.default.join(TEMPLATES_DIRECTORY, result.template.name);
-  import_fs2.default.readdirSync(templateDir).filter(isNotPackageJson).forEach((fileName) => copy(import_path3.default.join(templateDir, fileName), getTargetPath(root, fileName)));
+Adding gh actions to ${root}...`);
+  console.log("this is root", root);
+  const hasGithubDir = import_fs3.default.existsSync(`${root}/.github`);
+  console.log("has github dir: ", hasGithubDir);
+  const templateDir = import_path3.default.join(PROJECT_TEMPLATES_DIRECTORY, result.template.name);
+  import_fs3.default.readdirSync(templateDir).filter(isNotPackageJson).forEach((fileName) => copy(import_path3.default.join(templateDir, fileName), getTargetPath(root, fileName)));
   const packageJson = Object.assign(require(import_path3.default.join(templateDir, "package.json")), {
-    name: result.packageName
+    name: result.targetDir
   });
   write(getTargetPath(root, "package.json"), JSON.stringify(packageJson, null, 2));
-  const pkgManager = getPkgManagerFromUserAgent(process.env.npm_config_user_agent) ?? "npm";
-  console.log(green(`
+  const pkgManager = (_a = getPkgManagerFromUserAgent(process.env.npm_config_user_agent)) != null ? _a : "npm";
+  console.log(lightGreen(`
 Finished! Now run:
 `));
   if (root !== cwd) {
@@ -5266,4 +5248,99 @@ Finished! Now run:
   }
   console.log(installInstructionsByPkgManager(pkgManager));
 };
-init().catch(({ message }) => console.error(message));
+
+// src/prompts/add/index.ts
+var handlersMap = {
+  "gh-actions": ghActions
+};
+var handleTemplateChoice = (val) => handlersMap[val]();
+var add = () => (0, import_prompts.default)(steps).then((val) => handleTemplateChoice(val.template));
+var steps = [
+  {
+    type: "select",
+    name: "template",
+    message: reset("Select a template:"),
+    initial: 0,
+    choices: UTIL_TEMPLATES.map(templateAsSelectOption),
+    format: (x) => x.name
+  }
+];
+
+// src/prompts/create/index.ts
+var import_prompts2 = __toESM(require_prompts3());
+
+// src/prompts/create/handlers.ts
+var import_fs4 = __toESM(require("fs"));
+var import_path4 = __toESM(require("path"));
+var cwd2 = process.cwd();
+var makeTemplate = (result2) => {
+  var _a;
+  const root = import_path4.default.join(cwd2, result2.targetDir);
+  console.log(`
+Scaffolding project in ${root}...`);
+  import_fs4.default.mkdirSync(root);
+  const templateDir = import_path4.default.join(PROJECT_TEMPLATES_DIRECTORY2, result2.template.name);
+  import_fs4.default.readdirSync(templateDir).filter(isNotPackageJson).forEach((fileName) => copy(import_path4.default.join(templateDir, fileName), getTargetPath(root, fileName)));
+  const packageJson = Object.assign(require(import_path4.default.join(templateDir, "package.json")), {
+    name: result2.targetDir
+  });
+  write(getTargetPath(root, "package.json"), JSON.stringify(packageJson, null, 2));
+  const pkgManager = (_a = getPkgManagerFromUserAgent(process.env.npm_config_user_agent)) != null ? _a : "npm";
+  console.log(lightGreen(`
+Finished! Now run:
+`));
+  if (root !== cwd2) {
+    console.log(`  cd ${import_path4.default.relative(cwd2, root)}`);
+  }
+  console.log(installInstructionsByPkgManager(pkgManager));
+};
+
+// src/prompts/create/index.ts
+var create = () => (0, import_prompts2.default)(steps2).then(makeTemplate);
+var steps2 = [
+  {
+    type: "text",
+    name: "targetDir",
+    message: "Project name:",
+    initial: "my-awesome-project",
+    onState: ({ value = "" }) => value.trim(),
+    validate: validateProjectName
+  },
+  {
+    type: "select",
+    name: "template",
+    message: reset("Select a template:"),
+    initial: 0,
+    choices: PROJECT_TEMPLATES.map(templateAsSelectOption)
+  }
+];
+
+// src/prompts/start.ts
+var import_prompts3 = __toESM(require_prompts3());
+var start = () => (0, import_prompts3.default)(steps3).then((result2) => result2.command);
+var options2 = [
+  {
+    title: lightYellow("New project"),
+    value: "create"
+  },
+  {
+    title: lightGreen("Add a feature to an existing project"),
+    value: "add"
+  }
+];
+var steps3 = [
+  {
+    type: "select",
+    name: "command",
+    message: "What would you like to do?",
+    choices: options2
+  }
+];
+
+// src/index.ts
+var commandHandlers = {
+  add,
+  create
+};
+var handleCommand = (command) => commandHandlers[command]();
+start().then(handleCommand).catch(handleError);
