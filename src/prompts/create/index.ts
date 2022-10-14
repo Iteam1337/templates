@@ -2,14 +2,10 @@ import p from 'prompts';
 import { reset } from 'kolorist';
 
 import * as utils from '../../utils';
-import { TEMPLATES } from './constants';
+import { PROJECT_TEMPLATES } from './constants';
 import { makeTemplate } from './handlers';
 
 export const create = () => p(steps).then(makeTemplate);
-
-const templatesAsSelectOptions = TEMPLATES.flatMap((f) => f.variants).map(
-  utils.templateAsSelectOption
-);
 
 const steps: p.PromptObject[] = [
   {
@@ -25,6 +21,6 @@ const steps: p.PromptObject[] = [
     name: 'template',
     message: reset('Select a template:'),
     initial: 0,
-    choices: templatesAsSelectOptions,
+    choices: PROJECT_TEMPLATES.map(utils.templateAsSelectOption),
   },
 ];

@@ -3,9 +3,8 @@ import { lightGreen, lightYellow } from 'kolorist';
 
 import * as types from '../types';
 
-export function start() {
-  return p(steps).then((result) => result.command as types.Command);
-}
+export const start = () =>
+  p(steps).then((result) => result.command as types.Command);
 
 const options: Array<types.SelectOption<types.Command>> = [
   {

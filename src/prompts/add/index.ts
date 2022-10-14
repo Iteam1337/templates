@@ -1,16 +1,26 @@
+import { reset } from 'kolorist';
 import p from 'prompts';
-
+import * as types from './../../types';
 import * as utils from '../../utils';
+import { Util, UTIL_TEMPLATES } from '../create/constants';
+import { ghActions } from './handlers';
 
-export const add = () => p(steps).then(console.log);
+const handlersMap: Record<Util, () => void> = {
+  'gh-actions': ghActions,
+};
 
-const steps: p.PromptObject[] = [
+const handleTemplateChoice = (val: Util) => handlersMap[val]();
+
+export const add = () =>
+  p(steps).then((val) => handleTemplateChoice(val.template));
+
+const steps: p.PromptObject<'template'>[] = [
   {
-    type: 'text',
-    name: 'targetDir',
-    message: 'Project name:',
-    initial: 'my-awesome-project',
-    onState: ({ value = '' }) => value.trim(),
-    validate: utils.validateProjectName,
+    type: 'select',
+    name: 'template',
+    message: reset('Select a template:'),
+    initial: 0,
+    choices: UTIL_TEMPLATES.map(utils.templateAsSelectOption),
+    format: (x: types.Template) => x.name,
   },
 ];

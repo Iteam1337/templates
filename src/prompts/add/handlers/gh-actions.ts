@@ -1,20 +1,17 @@
-import p from 'prompts';
 import fs from 'fs';
 import path from 'path';
 import { lightGreen } from 'kolorist';
 
-import * as helpers from '../../helpers';
-import * as utils from '../../utils';
-
-import { PROJECT_TEMPLATES_DIRECTORY } from './constants';
+import * as helpers from '../../../helpers';
+import * as utils from '../../../utils';
 
 const cwd = process.cwd();
 
-export const makeTemplate = (result: p.Answers<string>) => {
-  const root = path.join(cwd, result.targetDir);
+export const ghActions = () => {
+  const root = path.join(cwd);
 
-  console.log(`\nScaffolding project in ${root}...`);
-  fs.mkdirSync(root);
+  console.log(`\nAdding gh actions to ${root}...`);
+  console.log('this is root', root);
 
   const templateDir = path.join(
     PROJECT_TEMPLATES_DIRECTORY,

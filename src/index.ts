@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import * as types from './types';
 import * as prompts from './prompts';
 import * as utils from './utils';

@@ -1,12 +1,10 @@
 import p from 'prompts';
 
-export type Template = {
-  name: string;
+export type Template<T extends string = string> = {
+  name: T;
   color: (color: string | number) => string;
-  variants: TemplateVariant[];
+  label: string;
 };
-
-export type TemplateVariant = Omit<Template, 'variants'> & { display: string };
 
 export type Command = 'add' | 'create';
 

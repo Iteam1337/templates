@@ -1,35 +1,38 @@
-// https://github.com/marvinhagemeister/kolorist/blob/main/src/index.ts
 import { blue, yellow, red, green } from 'kolorist';
 
 import * as types from '../../types';
 
-export const TEMPLATES_DIRECTORY = `${__dirname}/templates`;
+export const PROJECT_TEMPLATES_DIRECTORY = `${__dirname}/templates`;
 
-export const TEMPLATES: Array<types.Template> = [
+export const PROJECT_TEMPLATES: Array<types.Template> = [
   {
-    name: 'react',
     color: yellow,
-    variants: [
-      {
-        color: yellow,
-        name: 'react',
-        display: 'React JavaScript',
-      },
-      {
-        color: blue,
-        name: 'react-ts',
-        display: 'React TypeScript',
-      },
-      {
-        color: red,
-        name: 'vite-vanilla',
-        display: 'Vite JavaScript',
-      },
-      {
-        color: green,
-        name: 'koa-ts',
-        display: 'Koa Typescript',
-      },
-    ],
+    name: 'react',
+    label: 'React JavaScript',
+  },
+  {
+    color: blue,
+    name: 'react-ts',
+    label: 'React TypeScript',
+  },
+  {
+    color: red,
+    name: 'vite-vanilla',
+    label: 'Vite JavaScript',
+  },
+  {
+    color: green,
+    name: 'koa-ts',
+    label: 'Koa Typescript',
+  },
+];
+
+export type Util = 'gh-actions';
+
+export const UTIL_TEMPLATES: Array<types.Template<Util>> = [
+  {
+    color: yellow,
+    name: 'gh-actions',
+    label: 'Github Actions (on PR)',
   },
 ];

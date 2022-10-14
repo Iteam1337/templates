@@ -40,9 +40,9 @@ export const getTargetPath = (targetPath: string, fileName: string) =>
 
 export const handleError = (error: Error) => console.error(error.message);
 
-export const templateAsSelectOption = (
-  template: types.TemplateVariant
-): types.SelectOption<types.TemplateVariant> => ({
+export const templateAsSelectOption = <T extends string>(
+  template: types.Template<T>
+): types.SelectOption<types.Template> => ({
   title: template.color(template.name),
   value: template,
 });
