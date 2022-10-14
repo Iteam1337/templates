@@ -5231,6 +5231,8 @@ var ghActions = () => {
   console.log(`
 Adding gh actions to ${root}...`);
   console.log("this is root", root);
+  const hasGithubDir = import_fs3.default.existsSync(`${root}/.github`);
+  console.log("has github dir: ", hasGithubDir);
   const templateDir = import_path3.default.join(PROJECT_TEMPLATES_DIRECTORY, result.template.name);
   import_fs3.default.readdirSync(templateDir).filter(isNotPackageJson).forEach((fileName) => copy(import_path3.default.join(templateDir, fileName), getTargetPath(root, fileName)));
   const packageJson = Object.assign(require(import_path3.default.join(templateDir, "package.json")), {

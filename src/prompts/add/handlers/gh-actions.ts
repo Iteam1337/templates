@@ -7,12 +7,22 @@ import * as utils from '../../../utils';
 
 const cwd = process.cwd();
 
+const createGithubDir = (path: string) => {
+  const hasGithubDir = fs.existsSync(`${path}/.github`);
+  if (!hasGithubDir) {
+    fs.mkdirSync(`${path}/.github`);
+    console.log(`\nNo .github exists, creating directory`);
+  }
+};
+
 export const ghActions = () => {
   const root = path.join(cwd);
 
   console.log(`\nAdding gh actions to ${root}...`);
   console.log('this is root', root);
 
+  const hasGithubDir = fs.existsSync(`${root}/.github`);
+  console.log('has github dir: ', hasGithubDir);
   const templateDir = path.join(
     PROJECT_TEMPLATES_DIRECTORY,
     result.template.name
