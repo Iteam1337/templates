@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/Iteam1337/templates/compare/v1.5.3...v1.6.0) (2022-10-31)
+
+
+### Features
+
+* add cors ([#77](https://github.com/Iteam1337/templates/issues/77)) ([c34623f](https://github.com/Iteam1337/templates/commit/c34623fe32e28491ef8f3feaa5818db1724111d6))
+
 ## [1.5.3](https://github.com/Iteam1337/templates/compare/v1.5.2...v1.5.3) (2022-06-03)
 
 
