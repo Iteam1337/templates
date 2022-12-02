@@ -1,4 +1,4 @@
-name: Test
+name: PR Check
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
