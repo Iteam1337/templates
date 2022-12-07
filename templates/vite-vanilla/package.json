@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "autoprefixer": "10.4.9",
+    "autoprefixer": "10.4.13",
     "postcss": "8.4.16",
     "prettier": "2.7.1",
     "prettier-plugin-tailwindcss": "0.1.13",
