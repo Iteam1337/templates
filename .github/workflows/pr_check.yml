@@ -1,17 +1,17 @@
-name: Release
+name: PR Check
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [14.x, 16.x, 18.x, 19.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
 
       - name: Run tests
         run: |
-          npm install
+          npm ci
           npm test
         env:
           CI: true
