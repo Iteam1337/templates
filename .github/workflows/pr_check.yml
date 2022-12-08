@@ -27,3 +27,15 @@ jobs:
           npm test
         env:
           CI: true
+
+      - name: Docker build react
+        uses: docker/build-push-action@v3
+        with:
+          context: templates/react
+          push: false
+
+      - name: Docker build react-ts
+        uses: docker/build-push-action@v3
+        with:
+          context: templates/react-ts
+          push: false
