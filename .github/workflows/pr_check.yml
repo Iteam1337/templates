@@ -30,17 +30,16 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        context: [react, react-ts]
+
     steps:
       - uses: actions/checkout@v3
 
       - name: Docker build react
         uses: docker/build-push-action@v3
         with:
-          context: templates/react
-          push: false
-
-      - name: Docker build react-ts
-        uses: docker/build-push-action@v3
-        with:
-          context: templates/react-ts
+          context: templates/${{ matrix.context }}
           push: false
