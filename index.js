@@ -5167,22 +5167,27 @@ var TEMPLATES = [
       {
         color: yellow,
         name: "react",
-        display: "React JavaScript"
+        display: "React JavaScript Frontend"
       },
       {
         color: blue,
         name: "react-ts",
-        display: "React TypeScript"
+        display: "React TypeScript Frontend"
       },
       {
         color: red,
         name: "vite-vanilla",
-        display: "JavaScript"
+        display: "Vite JavaScript Frontend"
       },
       {
         color: green,
         name: "koa-ts",
         display: "Koa Typescript"
+      }
+      {
+        color: green,
+        name: "express-mongo-ts",
+        display: "Express Mongo Typescript Backend"
       }
     ]
   }
