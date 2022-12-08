@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Docker build react
+      - name: Docker build templates/${{ matrix.context }}
         uses: docker/build-push-action@v3
         with:
           context: templates/${{ matrix.context }}
