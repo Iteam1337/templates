@@ -1,4 +1,4 @@
-FROM node:16.18-slim AS builder
+FROM node:19.2-slim AS builder
 
 WORKDIR /app
 ADD package*.json .
