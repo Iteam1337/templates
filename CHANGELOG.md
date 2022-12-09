@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/Iteam1337/templates/compare/v1.6.0...v1.6.1) (2022-12-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @koa/cors to v4 ([#101](https://github.com/Iteam1337/templates/issues/101)) ([d3b987b](https://github.com/Iteam1337/templates/commit/d3b987b975210c385e58fb27aa1d031db51a7484))
+
 # [1.6.0](https://github.com/Iteam1337/templates/compare/v1.5.3...v1.6.0) (2022-10-31)
 
 
