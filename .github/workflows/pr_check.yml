@@ -33,7 +33,7 @@ jobs:
 
     strategy:
       matrix:
-        context: [react, react-ts]
+        context: [koa-ts, react, react-ts]
 
     steps:
       - uses: actions/checkout@v3
