@@ -5177,7 +5177,7 @@ var TEMPLATES = [
       {
         color: red,
         name: "vite-vanilla",
-        display: "JavaScript"
+        display: "Vite JavaScript"
       },
       {
         color: green,
