@@ -24,7 +24,7 @@
     "@types/koa-bodyparser": "4.3.10",
     "@types/koa-pino-logger": "3.0.1",
     "@types/supertest": "2.0.12",
-    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "@typescript-eslint/eslint-plugin": "6.0.0",
     "eslint": "8.43.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-import": "2.27.5",
