@@ -11,8 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "18.3.0",
-    "react-dom": "18.3.0"
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@iteam/eslint-config-react": "0.3.5",
@@ -20,7 +20,7 @@
     "@testing-library/jest-dom": "6.4.2",
     "@testing-library/react": "15.0.5",
     "@testing-library/user-event": "14.5.2",
-    "@types/react": "18.3.0",
+    "@types/react": "18.3.1",
     "@types/react-dom": "18.3.0",
     "@vitejs/plugin-react": "4.2.1",
     "@vitest/ui": "1.5.2",
