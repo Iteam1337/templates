@@ -35,7 +35,7 @@
   "devDependencies": {
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
-    "@types/jest": "29.5.13",
+    "@types/jest": "29.5.14",
     "@types/prompts": "2.4.9",
     "esbuild": "0.24.0",
     "eslint": "9.13.0",
