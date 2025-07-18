@@ -22,7 +22,7 @@
     "@testing-library/user-event": "14.6.1",
     "@types/react": "18.3.23",
     "@types/react-dom": "18.3.7",
-    "@vitejs/plugin-react": "4.6.0",
+    "@vitejs/plugin-react": "4.7.0",
     "@vitest/ui": "3.2.4",
     "autoprefixer": "10.4.21",
     "jsdom": "26.1.0",
