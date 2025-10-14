@@ -27,7 +27,7 @@
     "autoprefixer": "10.4.21",
     "jsdom": "27.0.0",
     "postcss": "8.5.6",
-    "prettier-plugin-tailwindcss": "0.6.14",
+    "prettier-plugin-tailwindcss": "0.7.0",
     "tailwindcss": "3.4.18",
     "typescript": "5.9.3",
     "vite": "6.3.7",
