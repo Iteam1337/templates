@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@iteam/eslint-config-react": "0.4.0",
-    "@nabla/vite-plugin-eslint": "2.0.6",
+    "@nabla/vite-plugin-eslint": "3.0.0",
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "15.0.7",
     "@testing-library/user-event": "14.6.1",
