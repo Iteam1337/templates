@@ -24,7 +24,7 @@
     "@types/react-dom": "18.3.7",
     "@vitejs/plugin-react": "4.7.0",
     "@vitest/ui": "4.1.9",
-    "autoprefixer": "10.4.27",
+    "autoprefixer": "10.5.2",
     "jsdom": "29.0.2",
     "postcss": "8.5.15",
     "prettier-plugin-tailwindcss": "0.7.2",
