@@ -12,15 +12,15 @@ extracted into a separate micro service if/when appropriate.
 1. Install nvm
 2. `nvm install`
 3. `nvm use`
-4. `npm run install`
+4. `pnpm install`
 
 ## Development
 
-`npm run dev`
+`pnpm dev`
 
 ## Tests
 
-`npm run test`
+`pnpm test`
 
 ## Misc
 

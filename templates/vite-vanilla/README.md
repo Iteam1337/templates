@@ -5,7 +5,7 @@
 Install the dependencies:
 
 ```sh
-npm install
+pnpm install
 ```
 
 ## Recommended VSCode extensions
