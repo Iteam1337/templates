@@ -20,7 +20,7 @@
     "create-templates": "index.js"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=26.12.1"
   },
   "files": [
     "index.js",
