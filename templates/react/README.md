@@ -7,13 +7,13 @@ This template uses [@iteam/eslint-config-react](https://github.com/Iteam1337/esl
 From the project root, run the following command:
 
 ```sh
-npx install-peerdeps --dev @iteam/eslint-config-react
+pnpm dlx install-peerdeps --dev @iteam/eslint-config-react
 ```
 
 Then, install the rest of the dependencies:
 
 ```sh
-npm install
+pnpm install
 ```
 
 ## Recommended VSCode extensions

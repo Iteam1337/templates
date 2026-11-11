@@ -20,7 +20,7 @@ When you run `npm run build` from the root, we bundle the source files into `./i
 You can test the script locally by running:
 
 ```sh
-npm run build
+pnpm build
 node index.js
 ```
 

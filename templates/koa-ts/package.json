@@ -1,6 +1,7 @@
 {
   "name": "koa-ts",
   "version": "1.0.0",
+  "packageManager": "pnpm@12.6.0",
   "description": "",
   "main": "./src/index.ts",
   "private": "true",
@@ -11,7 +12,7 @@
     "test": "jest",
     "build": "tsc",
     "start": "ts-node ./src/index.ts",
-    "dev": "nodemon -e ts,js --exec npm run start",
+    "dev": "nodemon -e ts,js --exec pnpm start",
     "lint": "eslint -c .eslintrc src/"
   },
   "author": "",

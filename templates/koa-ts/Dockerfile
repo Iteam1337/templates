@@ -2,16 +2,16 @@ FROM node:26.12.1-slim AS BUILDER
 
 WORKDIR /home/app
 
-# Help Docker cache npm install if neither of these files have changed
-ADD ./package.json ./package-lock.json ./
-RUN npm ci
+# Help Docker cache pnpm install if neither of these files have changed
+ADD ./package.json ./pnpm-lock.yaml ./
+RUN npm install --global pnpm@12.6.0 && pnpm install --frozen-lockfile
 
 ADD ./ ./
-RUN npm run build
+RUN pnpm build
 
 # Remove stuff in node_modules we no longer need
 ENV NODE_ENV production
-RUN npm prune --production
+RUN pnpm prune --prod
 
 # A slimmed down runner image with only the bare necessities
 FROM node:26.12.1-slim AS runner
