@@ -22,6 +22,8 @@ jobs:
     name: CLI scaffolding tests
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    outputs:
+      templates: ${{ steps.template-list.outputs.templates }}
     steps:
       - name: Checkout templates
         uses: actions/checkout@v4
@@ -36,6 +38,9 @@ jobs:
           cache: pnpm
       - name: Install CLI dependencies
         run: pnpm install --frozen-lockfile
+      - name: Read template list
+        id: template-list
+        run: node -e "console.log('templates=' + JSON.stringify(require('./scripts/templates.json')))" >> "$GITHUB_OUTPUT"
       - name: Test CLI scaffolding
         run: pnpm test
 
@@ -47,11 +52,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        template:
-          - react
-          - react-ts
-          - vite-vanilla
-          - koa-ts
+        template: ${{ fromJSON(needs.cli.outputs.templates) }}
     steps:
       - name: Checkout templates
         uses: actions/checkout@v4

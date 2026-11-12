@@ -6,9 +6,19 @@ This repository contains Iteam project templates to scaffold new projects and a 
 
 The CLI and generated projects use pnpm with a four-day minimum release age and dependency build scripts disabled by default. Resolve audit findings by upgrading to patched package releases and verifying that the project still works. Avoid version overrides and audit suppressions: they create an ongoing monitoring burden and can hide newly introduced issues.
 
-When an upstream development dependency has no compatible patched release, a specific advisory can be documented temporarily in `audit-allowlist.json`. The template verification rejects every finding not on that list. This repository-only exception file is not copied into generated projects.
+Keep the audit checks green without hiding new risks as dependencies and advisories change:
 
-The React templates temporarily use `Iteam1337/eslint-config-react#feat/native-flat-config` while its native ESLint 9 config is upstreamed. Their lockfiles pin the exact Git commit; replace the branch dependency with a released package version after the upstream change is merged and published.
+- Run audits on every pull request and through the weekly template verification. Let Renovate propose dependency updates, but merge them only when CI passes.
+- Upgrade to a compatible patched release first, then rerun the affected template verification.
+- If an upstream development dependency has no compatible patched release, document only that specific package and advisory in `audit-allowlist.json`, including why the exception is necessary. Every unmatched advisory still fails verification.
+- Re-evaluate allowlisted advisories on every dependency upgrade and remove entries as soon as a fix is available or the advisory no longer applies.
+- Keep `audit-allowlist.json` repository-only; it is not copied into generated projects.
+
+## Adding a new template
+
+Add the template under `templates/` and register it in `src/constants.ts` so the CLI offers it. Then add its directory name to `scripts/templates.json` to include it in automated verification. This file is the single template list used by both the CLI scaffolding tests and the GitHub Actions matrix, so those files do not need separate list updates.
+
+Validate the new template with `pnpm test` and `pnpm test:template <template>`.
 
 ## Verification
 
@@ -27,7 +37,7 @@ pnpm test:template vite-vanilla
 pnpm test:template koa-ts
 ```
 
-The GitHub Actions workflow runs the CLI suite and all four generated-project verifications on pull requests and weekly on Monday at 06:30 UTC (07:30 during CET and 08:30 during CEST). After it reaches the default branch, it can also be started manually with **Weekly template verification → Run workflow**.
+The GitHub Actions workflow runs the CLI suite and every configured generated-project verification on pull requests and weekly on Monday at 06:30 UTC (07:30 during CET and 08:30 during CEST). It can also be started manually with **Weekly template verification → Run workflow**.
 
 ## How to use
 
