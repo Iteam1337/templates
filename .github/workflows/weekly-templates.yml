@@ -1,6 +1,7 @@
 name: Weekly template verification
 
 on:
+  pull_request:
   schedule:
     # 07:30 during CET and 08:30 during CEST in Europe/Stockholm.
     - cron: '30 6 * * 1'

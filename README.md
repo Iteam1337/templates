@@ -27,7 +27,7 @@ pnpm test:template vite-vanilla
 pnpm test:template koa-ts
 ```
 
-The weekly GitHub Actions workflow runs the CLI suite and all four generated-project verifications on Monday at 06:30 UTC (07:30 during CET and 08:30 during CEST). It can also be started manually with **Weekly template verification → Run workflow**.
+The GitHub Actions workflow runs the CLI suite and all four generated-project verifications on pull requests and weekly on Monday at 06:30 UTC (07:30 during CET and 08:30 during CEST). After it reaches the default branch, it can also be started manually with **Weekly template verification → Run workflow**.
 
 ## How to use
 
