@@ -1,6 +1,6 @@
 import Koa from 'koa';
 import request from 'supertest';
-import errorHandler from './error-handler';
+import errorHandler from './error-handler.ts';
 
 describe('errorHandler', () => {
   let app: Koa<Koa.DefaultState, Koa.DefaultContext>;
@@ -10,10 +10,10 @@ describe('errorHandler', () => {
   });
 
   it('catches errors and passes the error message along to the response', async () => {
-    app.use(async (ctx, next) => {
+    app.use(async () => {
       throw new Error('I should be caught');
     });
-    app.use(async (ctx, next) => {
+    app.use(async (ctx) => {
       ctx.status = 200;
       ctx.body = 'All is good';
     });

@@ -2,6 +2,12 @@
 
 This repository contains Iteam project templates to scaffold new projects and a small CLI to initialize them.
 
+## Dependency maintenance
+
+The CLI and generated projects use pnpm with a four-day minimum release age and dependency build scripts disabled by default. Resolve audit findings by upgrading to patched package releases and verifying that the project still works. Avoid version overrides and audit suppressions: they create an ongoing monitoring burden and can hide newly introduced issues.
+
+When an upstream development dependency has no compatible patched release, a specific advisory can be documented temporarily in `audit-allowlist.json`. The template verification rejects every finding not on that list. This repository-only exception file is not copied into generated projects.
+
 ## How to use
 
 1. In your terminal, run:

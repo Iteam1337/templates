@@ -76,7 +76,7 @@ const init = async () => {
   const packageJson = Object.assign(
     require(path.join(templateDir, 'package.json')),
     {
-      name: result.packageName,
+      name: result.packageName ?? state.targetDir,
     }
   )
 

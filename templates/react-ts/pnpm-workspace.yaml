@@ -1,2 +1,4 @@
+allowBuilds:
+  esbuild: false
 minimumReleaseAge: 5760 # 4 days
 onlyBuiltDependencies: []
