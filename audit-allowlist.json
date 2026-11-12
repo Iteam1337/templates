@@ -1,0 +1,7 @@
+[
+  {
+    "package": "minimatch",
+    "title": "minimatch has potential denial of service via globparts amplification",
+    "reason": "Accepted temporarily for ESLint development dependencies. Current compatible ESLint and TypeScript ESLint releases require vulnerable minimatch major versions. Re-evaluate on every dependency upgrade; do not copy this exception into generated projects."
+  }
+]

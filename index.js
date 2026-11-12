@@ -5101,7 +5101,7 @@ Scaffolding project in ${root}...`);
   const packageJson = Object.assign(
     require(import_path3.default.join(templateDir, "package.json")),
     {
-      name: result.packageName
+      name: result.packageName ?? state.targetDir
     }
   );
   write(

@@ -2,8 +2,8 @@ import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
 import cors from '@koa/cors'
 
-import api from './api'
-import errorHandler from './middlewares/error-handler'
+import api from './api.ts'
+import errorHandler from './middlewares/error-handler.ts'
 
 const app = new Koa()
 

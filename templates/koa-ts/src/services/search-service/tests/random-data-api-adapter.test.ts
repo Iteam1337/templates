@@ -3,7 +3,7 @@ import Koa from 'koa'
 import KoaRouter from '@koa/router'
 import bodyParser from 'koa-bodyparser'
 import axios from 'axios'
-import { routes } from '../index'
+import { routes } from '../index.ts'
 
 const app = new Koa()
 const router = new KoaRouter()
@@ -11,8 +11,8 @@ routes(router)
 app.use(bodyParser())
 app.use(router.routes())
 
-jest.mock('axios')
-const mockedAxios = jest.mocked(axios, { shallow: true })
+vi.mock('axios')
+const mockedAxios = vi.mocked(axios)
 
 describe('randomDataApiAdapter', () => {
   describe('GET /search?freeTextQuery', () => {
