@@ -4,7 +4,9 @@ import { tmpdir } from 'os'
 import { join } from 'path'
 
 const ROOT = join(__dirname, '..')
-const TEMPLATES = ['react', 'react-ts', 'vite-vanilla', 'koa-ts']
+const TEMPLATES: string[] = JSON.parse(
+  readFileSync(join(ROOT, 'scripts/templates.json'), 'utf8')
+)
 
 describe.each(TEMPLATES)('CLI scaffolding: %s', (template) => {
   let workspace: string
