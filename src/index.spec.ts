@@ -36,6 +36,7 @@ describe.each(TEMPLATES)('CLI scaffolding: %s', (template) => {
       name: `${template}-integration`,
     })
     expect(existsSync(join(projectDir, '.gitignore'))).toBe(true)
+    expect(existsSync(join(projectDir, 'node_modules'))).toBe(false)
     expect(existsSync(join(projectDir, 'pnpm-lock.yaml'))).toBe(true)
     expect(existsSync(join(projectDir, 'pnpm-workspace.yaml'))).toBe(true)
     if (template !== 'vite-vanilla') {

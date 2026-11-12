@@ -8,11 +8,32 @@ The CLI and generated projects use pnpm with a four-day minimum release age and 
 
 When an upstream development dependency has no compatible patched release, a specific advisory can be documented temporarily in `audit-allowlist.json`. The template verification rejects every finding not on that list. This repository-only exception file is not copied into generated projects.
 
+The React templates temporarily use `Iteam1337/eslint-config-react#feat/native-flat-config` while its native ESLint 9 config is upstreamed. Their lockfiles pin the exact Git commit; replace the branch dependency with a released package version after the upstream change is merged and published.
+
+## Verification
+
+Run the CLI scaffolding tests:
+
+```sh
+pnpm test
+```
+
+Verify a generated project's frozen install, build, tests, lint (when available), audit, server boot, and HTTP readiness:
+
+```sh
+pnpm test:template react
+pnpm test:template react-ts
+pnpm test:template vite-vanilla
+pnpm test:template koa-ts
+```
+
+The weekly GitHub Actions workflow runs the CLI suite and all four generated-project verifications on Monday at 06:30 UTC (07:30 during CET and 08:30 during CEST). It can also be started manually with **Weekly template verification → Run workflow**.
+
 ## How to use
 
 1. In your terminal, run:
 ```sh
-npm init @iteam/templates@latest
+pnpm create @iteam/templates@latest
 ```
 2. You will be presented with the templates available (currently koa-typescript, react-typescript, react and vite)
 3. When you choose a template, a sub-directory with a new project will be created.
@@ -21,7 +42,7 @@ npm init @iteam/templates@latest
 
 The CLI part of this project is responsible for "end user usage", as in when you use the CLI to install a new template. All the source code for the CLI is in the `src` directory.
 
-When you run `npm run build` from the root, we bundle the source files into `./index.js`. Later, when this CLI is used, said `./index.js` is executed, effectively running the CLI script in the terminal of the consumer.
+When you run `pnpm build` from the root, we bundle the source files into `./index.js`. Later, when this CLI is used, said `./index.js` is executed, effectively running the CLI script in the terminal of the consumer.
 
 You can test the script locally by running:
 

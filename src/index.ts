@@ -86,7 +86,7 @@ const init = async () => {
   )
 
   const pkgManager =
-    utils.getPkgManagerFromUserAgent(process.env.npm_config_user_agent) ?? 'npm'
+    utils.getPkgManagerFromUserAgent(process.env.npm_config_user_agent) ?? 'pnpm'
 
   console.log(green(`\nFinished! Now run:\n`))
 

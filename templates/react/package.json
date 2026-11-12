@@ -16,7 +16,7 @@
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@iteam/eslint-config-react": "0.4.0",
+    "@iteam/eslint-config-react": "github:Iteam1337/eslint-config-react#feat/native-flat-config",
     "@nabla/vite-plugin-eslint": "3.0.1",
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "15.0.7",

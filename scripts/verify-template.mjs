@@ -4,14 +4,10 @@ import http from 'node:http'
 import net from 'node:net'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { scaffoldTemplate, TEMPLATES } from './scaffold-template.mjs'
 
 const auditAllowlist = JSON.parse(
   readFileSync(new URL('../audit-allowlist.json', import.meta.url), 'utf8')
-)
-const localEslintConfig = fileURLToPath(
-  new URL('../eslint-config-react/', import.meta.url)
 )
 
 const run = (command, args, cwd) => {
@@ -129,11 +125,6 @@ const verify = async (template) => {
     const { projectDir } = await scaffoldTemplate(template, workspace)
     console.log(`\nInstalling ${template} with pnpm...`)
     run('pnpm', ['install', '--frozen-lockfile'], projectDir)
-
-    if (template === 'react' || template === 'react-ts') {
-      console.log('\nLinking local @iteam/eslint-config-react...')
-      run('pnpm', ['link', localEslintConfig], projectDir)
-    }
 
     const packageJson = JSON.parse(
       readFileSync(path.join(projectDir, 'package.json'), 'utf8')
