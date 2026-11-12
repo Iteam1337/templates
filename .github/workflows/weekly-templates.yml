@@ -1,0 +1,69 @@
+name: Weekly template verification
+
+on:
+  schedule:
+    # 07:30 during CET and 08:30 during CEST in Europe/Stockholm.
+    - cron: '30 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weekly-template-verification-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: true
+
+jobs:
+  cli:
+    name: CLI scaffolding tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout templates
+        uses: actions/checkout@v4
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26.12.1
+          cache: pnpm
+      - name: Install CLI dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Test CLI scaffolding
+        run: pnpm test
+
+  template:
+    name: Verify ${{ matrix.template }}
+    needs: cli
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        template:
+          - react
+          - react-ts
+          - vite-vanilla
+          - koa-ts
+    steps:
+      - name: Checkout templates
+        uses: actions/checkout@v4
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26.12.1
+          cache: pnpm
+      - name: Install CLI dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build CLI and verify generated project
+        run: pnpm build && pnpm test:template ${{ matrix.template }}

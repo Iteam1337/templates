@@ -4979,6 +4979,7 @@ var bgLightGray = kolorist(47, 49);
 // src/functions.ts
 var import_fs = __toESM(require("fs"));
 var import_path = __toESM(require("path"));
+var GENERATED_DIRECTORIES = /* @__PURE__ */ new Set(["node_modules", "dist", "build", "coverage"]);
 var copyDir = (srcDir, destDir) => {
   import_fs.default.mkdirSync(destDir, { recursive: true });
   const prepareAndCopy = (file) => {
@@ -4986,10 +4987,13 @@ var copyDir = (srcDir, destDir) => {
     const destFile = import_path.default.resolve(destDir, file);
     copy(srcFile, destFile);
   };
-  import_fs.default.readdirSync(srcDir).forEach(prepareAndCopy);
+  import_fs.default.readdirSync(srcDir).filter((file) => !GENERATED_DIRECTORIES.has(file)).forEach(prepareAndCopy);
 };
 var write = (to, content) => import_fs.default.writeFileSync(to, content);
-var copy = (src, dest) => import_fs.default.statSync(src).isDirectory() ? copyDir(src, dest) : import_fs.default.copyFileSync(src, dest);
+var copy = (src, dest) => {
+  if (GENERATED_DIRECTORIES.has(import_path.default.basename(src))) return;
+  return import_fs.default.statSync(src).isDirectory() ? copyDir(src, dest) : import_fs.default.copyFileSync(src, dest);
+};
 
 // src/utils.ts
 var import_path2 = __toESM(require("path"));
@@ -5108,7 +5112,7 @@ Scaffolding project in ${root}...`);
     getTargetPath(root, "package.json"),
     JSON.stringify(packageJson, null, 2)
   );
-  const pkgManager = getPkgManagerFromUserAgent(process.env.npm_config_user_agent) ?? "npm";
+  const pkgManager = getPkgManagerFromUserAgent(process.env.npm_config_user_agent) ?? "pnpm";
   console.log(green(`
 Finished! Now run:
 `));
