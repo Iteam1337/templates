@@ -40,7 +40,7 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Read template list
         id: template-list
-        run: node -e "console.log('templates=' + JSON.stringify(require('./scripts/templates.json')))" >> "$GITHUB_OUTPUT"
+        run: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --input-type=module -e "import { TEMPLATE_VARIANTS } from './src/templates.ts'; console.log('templates=' + JSON.stringify(TEMPLATE_VARIANTS.map(({ name }) => name)))" >> "$GITHUB_OUTPUT"
       - name: Test CLI scaffolding
         run: pnpm test
 

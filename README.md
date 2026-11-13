@@ -15,7 +15,7 @@ Functional verification and dependency audits are independent GitHub checks. An 
 
 ## Adding a new template
 
-Add the template under `templates/` and register it in `src/constants.ts` so the CLI offers it. Then add its directory name to `scripts/templates.json` to include it in automated verification. This file is the single template list used by both the CLI scaffolding tests and the GitHub Actions matrix, so those files do not need separate list updates.
+Add the template under `templates/` and register its variant in `src/templates.ts` with its directory name, display label, and color. This typed `TEMPLATES` definition is the single source of truth for the CLI, scaffolding tests, and both GitHub Actions matrices, so those consumers do not need separate list updates.
 
 Validate the new template with `pnpm test` and `pnpm test:template <template>`.
 
