@@ -4,15 +4,14 @@ This repository contains Iteam project templates to scaffold new projects and a 
 
 ## Dependency maintenance
 
-The CLI and generated projects use pnpm with a four-day minimum release age and dependency build scripts disabled by default. Resolve audit findings by upgrading to patched package releases and verifying that the project still works. Avoid version overrides and audit suppressions: they create an ongoing monitoring burden and can hide newly introduced issues.
+The CLI and generated projects use pnpm with a four-day minimum release age and dependency build scripts disabled by default. Resolve audit findings by upgrading to patched package releases and verifying that the project still works. Dependency installation and updates continue to respect `minimumReleaseAge`; no audit command in CI changes the repository or its lockfiles.
 
-Keep the audit checks green without hiding new risks as dependencies and advisories change:
+Functional verification and dependency audits are independent GitHub checks. An unfixable advisory does not block either check, but remains visible in the audit job summary. pnpm fails the audit when the locked dependency graph has an actionable vulnerability. Registry failures still fail the check.
 
-- Run audits on every pull request and through the weekly template verification. Let Renovate propose dependency updates, but merge them only when CI passes.
+- Run both checks on every pull request and through the weekly template verification. Let Renovate propose dependency updates, but merge them only when CI passes.
 - Upgrade to a compatible patched release first, then rerun the affected template verification.
-- If an upstream development dependency has no compatible patched release, document only that specific package and advisory in `audit-allowlist.json`, including why the exception is necessary. Every unmatched advisory still fails verification.
-- Re-evaluate allowlisted advisories on every dependency upgrade and remove entries as soon as a fix is available or the advisory no longer applies.
-- Keep `audit-allowlist.json` repository-only; it is not copied into generated projects.
+- Configure audit severity and deliberate GHSA exceptions with pnpm's native `audit.level` and `audit.ignore` settings in the relevant template's `pnpm-workspace.yaml`. pnpm applies these settings consistently to local and CI audits.
+- Review ignored advisories whenever dependencies change and remove exceptions as soon as they no longer apply. Prefer upgrades over exceptions; do not ignore an advisory merely to make CI green.
 
 ## Adding a new template
 
@@ -28,7 +27,7 @@ Run the CLI scaffolding tests:
 pnpm test
 ```
 
-Verify a generated project's frozen install, build, tests, lint (when available), audit, server boot, and HTTP readiness:
+Verify a generated project's frozen install, build, tests, lint (when available), server boot, and HTTP readiness:
 
 ```sh
 pnpm test:template react
@@ -37,7 +36,13 @@ pnpm test:template vite-vanilla
 pnpm test:template koa-ts
 ```
 
-The GitHub Actions workflow runs the CLI suite and every configured generated-project verification on pull requests and weekly on Monday at 06:30 UTC (07:30 during CET and 08:30 during CEST). It can also be started manually with **Weekly template verification → Run workflow**.
+Audit a template's committed lockfile using its native pnpm configuration:
+
+```sh
+pnpm audit:template react
+```
+
+The audit command uses an isolated temporary copy, so pnpm cannot add ignored advisories to the working tree. The GitHub Actions workflow runs independent E2E and audit checks for every configured template on pull requests and weekly on Monday at 06:30 UTC (07:30 during CET and 08:30 during CEST). It can also be started manually with **Weekly template verification → Run workflow**. Each audit job includes a dependency and advisory summary.
 
 ## How to use
 
