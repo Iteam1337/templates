@@ -2,24 +2,42 @@
 
 This repository contains Iteam project templates to scaffold new projects and a small CLI to initialize them.
 
-## Dependency maintenance
+## How to use
 
-The CLI and generated projects use pnpm with a four-day minimum release age and dependency build scripts disabled by default. Resolve audit findings by upgrading to patched package releases and verifying that the project still works. Dependency installation and updates continue to respect `minimumReleaseAge`; no audit command in CI changes the repository or its lockfiles.
+This tool and the projects it creates use [pnpm](https://pnpm.io/), a JavaScript package manager that installs dependencies and runs project scripts. If you are new to pnpm, install Node.js using the version in `.nvmrc` or `.tool-versions`, then follow the [pnpm installation guide](https://pnpm.io/installation).
 
-Functional verification and dependency audits are independent GitHub checks. An unfixable advisory does not block either check, but remains visible in the audit job summary. pnpm fails the audit when the locked dependency graph has an actionable vulnerability. Registry failures still fail the check.
+We support pnpm only. Following Shai-Hulud, our assessment was that pnpm was the only package manager making meaningful supply-chain security improvements at the pace we needed. Its release-age quarantine, dependency build-script controls, frozen lockfiles, and audit policies help us reduce the risk of installing compromised packages.
 
-- Run both checks on every pull request and through the weekly template verification. Let Renovate propose dependency updates, but merge them only when CI passes.
-- Upgrade to a compatible patched release first, then rerun the affected template verification.
-- Configure audit severity and deliberate GHSA exceptions with pnpm's native `audit.level` and `audit.ignore` settings in the relevant template's `pnpm-workspace.yaml`. pnpm applies these settings consistently to local and CI audits.
-- Review ignored advisories whenever dependencies change and remove exceptions as soon as they no longer apply. Prefer upgrades over exceptions; do not ignore an advisory merely to make CI green.
+1. In your terminal, run:
+```sh
+pnpm create @iteam/templates@latest
+```
+2. You will be presented with the templates available (currently koa-typescript, react-typescript, react and vite)
+3. When you choose a template, a sub-directory with a new project will be created.
+4. Open the new project directory:
+```sh
+cd my-awesome-project
+```
+5. Install its dependencies and start the development server:
+```sh
+pnpm install
+pnpm run dev
+```
 
-## Adding a new template
+## How to contribute
 
-Add the template under `templates/` and register its variant in `src/templates.ts` with its directory name, display label, and color. This typed `TEMPLATES` definition is the single source of truth for the CLI, scaffolding tests, and both GitHub Actions matrices, so those consumers do not need separate list updates.
+The CLI part of this project is responsible for "end user usage", as in when you use the CLI to install a new template. All the source code for the CLI is in the `src` directory.
 
-Validate the new template with `pnpm test` and `pnpm test:template <template>`.
+When you run `pnpm build` from the root, we bundle the source files into `./index.js`. Later, when this CLI is used, said `./index.js` is executed, effectively running the CLI script in the terminal of the consumer.
 
-## Verification
+You can test the script locally by running:
+
+```sh
+pnpm build
+node index.js
+```
+
+### Verification
 
 Run the CLI scaffolding tests:
 
@@ -44,27 +62,24 @@ pnpm audit:template react
 
 The audit command uses an isolated temporary copy, so pnpm cannot add ignored advisories to the working tree. The GitHub Actions workflow runs independent E2E and audit checks for every configured template on pull requests and weekly on Monday at 06:30 UTC (07:30 during CET and 08:30 during CEST). It can also be started manually with **Weekly template verification → Run workflow**. Each audit job includes a dependency and advisory summary.
 
-## How to use
+### Adding a new template
 
-1. In your terminal, run:
-```sh
-pnpm create @iteam/templates@latest
-```
-2. You will be presented with the templates available (currently koa-typescript, react-typescript, react and vite)
-3. When you choose a template, a sub-directory with a new project will be created.
+Add the template under `templates/` and register its variant in `src/templates.ts` with its directory name, display label, and color. This typed `TEMPLATES` definition is the single source of truth for the CLI, scaffolding tests, and both GitHub Actions matrices, so those consumers do not need separate list updates.
 
-### How to contribute
+Validate the new template with `pnpm test` and `pnpm test:template <template>`.
 
-The CLI part of this project is responsible for "end user usage", as in when you use the CLI to install a new template. All the source code for the CLI is in the `src` directory.
+### Dependency maintenance
 
-When you run `pnpm build` from the root, we bundle the source files into `./index.js`. Later, when this CLI is used, said `./index.js` is executed, effectively running the CLI script in the terminal of the consumer.
+The CLI and generated projects use pnpm with a four-day minimum release age and dependency build scripts disabled by default. Resolve audit findings by upgrading to patched package releases and verifying that the project still works. Dependency installation and updates continue to respect `minimumReleaseAge`; no audit command in CI changes the repository or its lockfiles.
 
-You can test the script locally by running:
+Functional verification and dependency audits are independent GitHub checks. An unfixable advisory does not block either check, but remains visible in the audit job summary. pnpm fails the audit when the locked dependency graph has an actionable vulnerability. Registry failures still fail the check.
 
-```sh
-pnpm build
-node index.js
-```
+- Run both checks on every pull request and through the weekly template verification. Let Renovate propose dependency updates, but merge them only when CI passes.
+- Upgrade to a compatible patched release first, then rerun the affected template verification.
+- Configure audit severity and deliberate GHSA exceptions with pnpm's native `audit.level` and `audit.ignore` settings in the relevant template's `pnpm-workspace.yaml`. pnpm applies these settings consistently to local and CI audits.
+- Review ignored advisories whenever dependencies change and remove exceptions as soon as they no longer apply. Prefer upgrades over exceptions; do not ignore an advisory merely to make CI green.
+
+### Releasing
 
 This project is set up with [semantic-release](https://github.com/semantic-release/semantic-release).
 Every push to the main branch will trigger a Github Actions workflow (`./.github/workflows/release`).
