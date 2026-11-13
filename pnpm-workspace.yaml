@@ -1,0 +1,4 @@
+allowBuilds:
+  '@parcel/watcher': false
+  esbuild: false
+minimumReleaseAge: 5760 # 4 days

@@ -7,7 +7,8 @@ import { green, reset } from 'kolorist'
 
 import * as functions from './functions'
 import * as utils from './utils'
-import { TEMPLATES, TEMPLATES_DIRECTORY } from './constants'
+import { TEMPLATES_DIRECTORY } from './constants'
+import { TEMPLATE_VARIANTS } from './templates'
 
 const cwd = process.cwd()
 
@@ -15,8 +16,6 @@ const init = async () => {
   const state = {
     targetDir: '',
   }
-
-  const templates = TEMPLATES.flatMap((f) => f.variants)
 
   let steps: prompts.PromptObject[] = [
     {
@@ -49,7 +48,7 @@ const init = async () => {
       name: 'template',
       message: reset('Select a template:'),
       initial: 0,
-      choices: templates.map((template) => ({
+      choices: TEMPLATE_VARIANTS.map((template) => ({
         title: template.color(template.name),
         value: template,
       })),
@@ -76,7 +75,7 @@ const init = async () => {
   const packageJson = Object.assign(
     require(path.join(templateDir, 'package.json')),
     {
-      name: result.packageName,
+      name: result.packageName ?? state.targetDir,
     }
   )
 
@@ -85,16 +84,13 @@ const init = async () => {
     JSON.stringify(packageJson, null, 2)
   )
 
-  const pkgManager =
-    utils.getPkgManagerFromUserAgent(process.env.npm_config_user_agent) ?? 'npm'
-
   console.log(green(`\nFinished! Now run:\n`))
 
   if (root !== cwd) {
     console.log(`  cd ${path.relative(cwd, root)}`)
   }
 
-  console.log(utils.installInstructionsByPkgManager(pkgManager))
+  console.log('  pnpm install \n  pnpm run dev')
 }
 
 init().catch(({ message }) => console.error(message))

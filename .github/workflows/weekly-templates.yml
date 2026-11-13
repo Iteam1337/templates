@@ -1,0 +1,94 @@
+name: Weekly template verification
+
+on:
+  pull_request:
+  schedule:
+    # 07:30 during CET and 08:30 during CEST in Europe/Stockholm.
+    - cron: '30 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weekly-template-verification-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: true
+
+jobs:
+  cli:
+    name: CLI scaffolding tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      templates: ${{ steps.template-list.outputs.templates }}
+    steps:
+      - name: Checkout templates
+        uses: actions/checkout@v4
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26.12.1
+          cache: pnpm
+      - name: Install CLI dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Read template list
+        id: template-list
+        run: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --input-type=module -e "import { TEMPLATE_VARIANTS } from './src/templates.ts'; console.log('templates=' + JSON.stringify(TEMPLATE_VARIANTS.map(({ name }) => name)))" >> "$GITHUB_OUTPUT"
+      - name: Test CLI scaffolding
+        run: pnpm test
+
+  template:
+    name: E2E / ${{ matrix.template }}
+    needs: cli
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        template: ${{ fromJSON(needs.cli.outputs.templates) }}
+    steps:
+      - name: Checkout templates
+        uses: actions/checkout@v4
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26.12.1
+          cache: pnpm
+      - name: Install CLI dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build CLI and verify generated project
+        run: pnpm build && pnpm test:template ${{ matrix.template }}
+
+  audit:
+    name: Audit / ${{ matrix.template }}
+    needs: cli
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        template: ${{ fromJSON(needs.cli.outputs.templates) }}
+    steps:
+      - name: Checkout templates
+        uses: actions/checkout@v4
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26.12.1
+      - name: Audit committed template lockfile
+        run: pnpm audit:template ${{ matrix.template }}

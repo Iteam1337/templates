@@ -1,8 +1,18 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
+    "target": "ES2024",
+    "lib": ["ES2024"],
     "rootDir": "./src",
     "outDir": "./build",
-    "resolveJsonModule": true
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "rewriteRelativeImportExtensions": true,
+    "resolveJsonModule": true,
+    "types": ["node", "vitest/globals"]
   },
+  "include": ["src"]
 }

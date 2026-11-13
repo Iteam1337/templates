@@ -1,5 +1,7 @@
 {
   "extends": ["config:base"],
+  "platformAutomerge": false,
+  "ignoreTests": false,
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],

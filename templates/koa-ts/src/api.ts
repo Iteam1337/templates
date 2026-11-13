@@ -1,5 +1,5 @@
 import KoaRouter from '@koa/router'
-import { routes as searchRoutes } from './services/search-service'
+import { routes as searchRoutes } from './services/search-service/index.ts'
 
 const router = new KoaRouter()
 

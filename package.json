@@ -2,6 +2,7 @@
   "name": "@iteam/create-templates",
   "author": "Andreas Lundqvist <andreas.lundqvist@iteam.se>",
   "version": "1.6.1",
+  "packageManager": "pnpm@12.6.0",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -10,7 +11,9 @@
   "main": "index.js",
   "scripts": {
     "build": "esbuild src/index.ts --bundle --platform=node --outfile=index.js",
-    "test": "jest --maxWorkers=50%"
+    "test": "pnpm build && jest --maxWorkers=50% && node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/audit-template.test.mjs",
+    "test:template": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-template.mjs",
+    "audit:template": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/audit-template.mjs"
   },
   "repository": {
     "type": "git",
@@ -20,7 +23,7 @@
     "create-templates": "index.js"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=26.12.1"
   },
   "files": [
     "index.js",

@@ -12,18 +12,22 @@ extracted into a separate micro service if/when appropriate.
 1. Install nvm
 2. `nvm install`
 3. `nvm use`
-4. `npm run install`
+4. `pnpm install`
 
 ## Development
 
-`npm run dev`
+`pnpm dev`
 
 ## Tests
 
-`npm run test`
+`pnpm test`
 
 ## Misc
 
 - [koa-pino-http](https://www.npmjs.com/package/koa-pino-logger) provides logging
-- [Jest](https://jestjs.io/) is used for testing along with [supertest](https://www.npmjs.com/package/supertest)
+- [Vitest](https://vitest.dev/) is used for testing along with [supertest](https://www.npmjs.com/package/supertest)
 - There is a simple error handler provided in [src/middleware/error-handler.ts]()
+
+## Dependency maintenance
+
+This project uses pnpm with a four-day minimum release age and dependency build scripts disabled by default. Resolve audit findings by upgrading to patched package releases and running the tests. Avoid version overrides and audit suppressions, which require ongoing manual monitoring.

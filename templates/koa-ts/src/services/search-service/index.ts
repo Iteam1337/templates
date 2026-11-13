@@ -6,7 +6,7 @@
  * course, there are always exceptions).
  */
 import KoaRouter from '@koa/router'
-import { getRandomData } from './adapters/random-data-api-adapter'
+import { getRandomData } from './adapters/random-data-api-adapter.ts'
 
 const performSearch = async () => {
   return await getRandomData()

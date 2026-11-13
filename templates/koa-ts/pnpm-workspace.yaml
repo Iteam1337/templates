@@ -1,0 +1,4 @@
+allowBuilds:
+  '@parcel/watcher': false
+minimumReleaseAge: 5760 # 4 days
+onlyBuiltDependencies: []

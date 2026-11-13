@@ -11,10 +11,13 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 19.x]
+        node-version: [26.12.1]
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
       
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -23,8 +26,8 @@ jobs:
 
       - name: Run tests
         run: |
-          npm ci
-          npm test
+          pnpm install --frozen-lockfile
+          pnpm test
         env:
           CI: true
 
