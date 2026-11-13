@@ -45,7 +45,7 @@ jobs:
         run: pnpm test
 
   template:
-    name: Verify ${{ matrix.template }}
+    name: E2E / ${{ matrix.template }}
     needs: cli
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -69,3 +69,26 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Build CLI and verify generated project
         run: pnpm build && pnpm test:template ${{ matrix.template }}
+
+  audit:
+    name: Audit / ${{ matrix.template }}
+    needs: cli
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        template: ${{ fromJSON(needs.cli.outputs.templates) }}
+    steps:
+      - name: Checkout templates
+        uses: actions/checkout@v4
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26.12.1
+      - name: Audit committed template lockfile
+        run: pnpm audit:template ${{ matrix.template }}

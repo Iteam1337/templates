@@ -6,10 +6,6 @@ import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { scaffoldTemplate, TEMPLATES } from './scaffold-template.mjs'
 
-const auditAllowlist = JSON.parse(
-  readFileSync(new URL('../audit-allowlist.json', import.meta.url), 'utf8')
-)
-
 const run = (command, args, cwd) => {
   const result = spawnSync(command, args, {
     cwd,
@@ -33,47 +29,6 @@ const getAvailablePort = () =>
       listener.close(() => resolve(port))
     })
   })
-
-const audit = (projectDir) => {
-  const result = spawnSync(
-    'pnpm',
-    ['audit', '--audit-level=low', '--json'],
-    { cwd: projectDir, encoding: 'utf8' }
-  )
-
-  if (result.error) throw result.error
-
-  let report
-  try {
-    report = JSON.parse(result.stdout)
-  } catch {
-    throw new Error(`Unable to read pnpm audit output:\n${result.stderr}`)
-  }
-
-  const allowed = new Set(
-    auditAllowlist.map(({ package: name, title }) => `${name}\0${title}`)
-  )
-  const advisories = Object.values(report.advisories ?? {})
-  const unexpected = advisories.filter(
-    ({ module_name, title }) => !allowed.has(`${module_name}\0${title}`)
-  )
-
-  for (const advisory of advisories.filter((item) => !unexpected.includes(item))) {
-    console.warn(`Accepted repository audit exception: ${advisory.module_name} — ${advisory.title}`)
-  }
-
-  if (unexpected.length > 0 || result.status > 1) {
-    const details = unexpected
-      .map(
-        ({ module_name, title, vulnerable_versions, patched_versions }) =>
-          `${module_name}: ${title}\n  Vulnerable: ${vulnerable_versions}\n  Patched: ${patched_versions}`
-      )
-      .join('\n')
-    throw new Error(`Unexpected audit findings:\n${details || result.stderr}`)
-  }
-
-  console.log('No unexpected audit findings.')
-}
 
 const request = (port) =>
   new Promise((resolve, reject) => {
@@ -145,9 +100,6 @@ const verify = async (template) => {
       run('pnpm', ['lint'], projectDir)
     }
 
-    console.log(`\nAuditing ${template}...`)
-    audit(projectDir)
-
     const port = await getAvailablePort()
     const args =
       template === 'koa-ts'
@@ -189,7 +141,7 @@ const verify = async (template) => {
       )
     }
 
-    console.log(`${template} booted successfully and has no unexpected audit findings.`)
+    console.log(`${template} booted successfully.`)
   } finally {
     if (server) await stop(server)
     rmSync(workspace, { recursive: true, force: true })

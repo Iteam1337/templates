@@ -11,8 +11,9 @@
   "main": "index.js",
   "scripts": {
     "build": "esbuild src/index.ts --bundle --platform=node --outfile=index.js",
-    "test": "pnpm build && jest --maxWorkers=50%",
-    "test:template": "node scripts/verify-template.mjs"
+    "test": "pnpm build && jest --maxWorkers=50% && node --test scripts/audit-template.test.mjs",
+    "test:template": "node scripts/verify-template.mjs",
+    "audit:template": "node scripts/audit-template.mjs"
   },
   "repository": {
     "type": "git",
