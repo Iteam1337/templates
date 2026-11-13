@@ -84,16 +84,13 @@ const init = async () => {
     JSON.stringify(packageJson, null, 2)
   )
 
-  const pkgManager =
-    utils.getPkgManagerFromUserAgent(process.env.npm_config_user_agent) ?? 'pnpm'
-
   console.log(green(`\nFinished! Now run:\n`))
 
   if (root !== cwd) {
     console.log(`  cd ${path.relative(cwd, root)}`)
   }
 
-  console.log(utils.installInstructionsByPkgManager(pkgManager))
+  console.log('  pnpm install \n  pnpm run dev')
 }
 
 init().catch(({ message }) => console.error(message))

@@ -73,7 +73,7 @@ This workflow will do the following:
 
 - Run tests
 
-- Run `npx semantic-relase`, which will in turn:
+- Run `pnpm exec semantic-release`, which will in turn:
 
   - Analyze the commits since the last release, using the commit names based on [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
