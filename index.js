@@ -5006,16 +5006,8 @@ var RENAMABLE_FILES_MAP = {
 
 // src/utils.ts
 var isValidPkgName = (name) => /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(name);
-var getPkgManagerFromUserAgent = (userAgent) => userAgent?.split(" ")[0]?.split("/")[0];
 var isNotPackageJson = (name) => name !== "package.json";
 var toValidPackageName = (name) => name.trim().toLowerCase().replace(/\s+/g, "-").replace(/^[._]/, "").replace(/[^a-z0-9-~]+/g, "-");
-var installInstructionsByPkgManager = (pkgManager) => {
-  const instructions = {
-    yarn: "  yarn \n   yarn dev",
-    default: `  ${pkgManager} install \n  ${pkgManager} run dev`
-  };
-  return instructions[pkgManager] ?? instructions.default;
-};
 var getTargetPath = (targetPath, fileName) => import_path2.default.join(targetPath, RENAMABLE_FILES_MAP[fileName] ?? fileName);
 
 // src/templates.ts
@@ -5112,13 +5104,12 @@ Scaffolding project in ${root}...`);
     getTargetPath(root, "package.json"),
     JSON.stringify(packageJson, null, 2)
   );
-  const pkgManager = getPkgManagerFromUserAgent(process.env.npm_config_user_agent) ?? "pnpm";
   console.log(green(`
 Finished! Now run:
 `));
   if (root !== cwd) {
     console.log(`  cd ${import_path3.default.relative(cwd, root)}`);
   }
-  console.log(installInstructionsByPkgManager(pkgManager));
+  console.log("  pnpm install \n  pnpm run dev");
 };
 init().catch(({ message }) => console.error(message));

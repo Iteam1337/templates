@@ -21,7 +21,7 @@ export const scaffoldTemplate = (template, workspace) =>
     const projectDir = path.join(workspace, projectName)
     const cli = spawn(process.execPath, [path.join(repositoryRoot, 'index.js')], {
       cwd: workspace,
-      env: { ...process.env, FORCE_COLOR: '0', npm_config_user_agent: 'pnpm' },
+      env: { ...process.env, FORCE_COLOR: '0' },
       stdio: ['pipe', 'pipe', 'pipe'],
     })
     let output = ''

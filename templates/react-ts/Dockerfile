@@ -1,8 +1,11 @@
 FROM node:26.12.1-slim AS builder
 
 WORKDIR /app
-ADD package.json pnpm-lock.yaml .
-RUN npm install --global pnpm@12.6.0 && pnpm install --frozen-lockfile
+COPY --from=ghcr.io/pnpm/pnpm:12.6.0 /opt/pnpm /opt/pnpm
+RUN ln -s /opt/pnpm/pnpm /usr/local/bin/pnpm
+
+ADD package.json pnpm-lock.yaml pnpm-workspace.yaml .
+RUN pnpm install --frozen-lockfile
 ADD . .
 RUN pnpm build
 
