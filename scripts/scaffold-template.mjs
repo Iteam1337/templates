@@ -1,11 +1,10 @@
 import { spawn } from 'node:child_process'
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { TEMPLATE_VARIANTS } from '../src/templates.ts'
 
-export const TEMPLATES = JSON.parse(
-  readFileSync(new URL('./templates.json', import.meta.url), 'utf8')
-)
+export const TEMPLATES = TEMPLATE_VARIANTS.map(({ name }) => name)
 
 const repositoryRoot = fileURLToPath(new URL('..', import.meta.url))
 

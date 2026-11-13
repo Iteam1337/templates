@@ -3,12 +3,12 @@ import { mkdtempSync, readFileSync, rmSync, existsSync } from 'fs'
 import { tmpdir } from 'os'
 import { join } from 'path'
 
-const ROOT = join(__dirname, '..')
-const TEMPLATES: string[] = JSON.parse(
-  readFileSync(join(ROOT, 'scripts/templates.json'), 'utf8')
-)
+import { TEMPLATE_VARIANTS } from './templates'
 
-describe.each(TEMPLATES)('CLI scaffolding: %s', (template) => {
+const ROOT = join(__dirname, '..')
+const TEMPLATE_NAMES = TEMPLATE_VARIANTS.map(({ name }) => name)
+
+describe.each(TEMPLATE_NAMES)('CLI scaffolding: %s', (template) => {
   let workspace: string
 
   beforeEach(() => {
@@ -22,7 +22,12 @@ describe.each(TEMPLATES)('CLI scaffolding: %s', (template) => {
   it('creates the selected project with pnpm instructions', () => {
     const output = execFileSync(
       process.execPath,
-      [join(ROOT, 'scripts/scaffold-template.mjs'), template, workspace],
+      [
+        '--disable-warning=MODULE_TYPELESS_PACKAGE_JSON',
+        join(ROOT, 'scripts/scaffold-template.mjs'),
+        template,
+        workspace,
+      ],
       { encoding: 'utf8', timeout: 20_000 }
     )
     const projectDir = join(workspace, `${template}-integration`)

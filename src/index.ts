@@ -7,7 +7,8 @@ import { green, reset } from 'kolorist'
 
 import * as functions from './functions'
 import * as utils from './utils'
-import { TEMPLATES, TEMPLATES_DIRECTORY } from './constants'
+import { TEMPLATES_DIRECTORY } from './constants'
+import { TEMPLATE_VARIANTS } from './templates'
 
 const cwd = process.cwd()
 
@@ -15,8 +16,6 @@ const init = async () => {
   const state = {
     targetDir: '',
   }
-
-  const templates = TEMPLATES.flatMap((f) => f.variants)
 
   let steps: prompts.PromptObject[] = [
     {
@@ -49,7 +48,7 @@ const init = async () => {
       name: 'template',
       message: reset('Select a template:'),
       initial: 0,
-      choices: templates.map((template) => ({
+      choices: TEMPLATE_VARIANTS.map((template) => ({
         title: template.color(template.name),
         value: template,
       })),

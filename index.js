@@ -5003,6 +5003,22 @@ var TEMPLATES_DIRECTORY = `${__dirname}/templates`;
 var RENAMABLE_FILES_MAP = {
   _gitignore: ".gitignore"
 };
+
+// src/utils.ts
+var isValidPkgName = (name) => /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(name);
+var getPkgManagerFromUserAgent = (userAgent) => userAgent?.split(" ")[0]?.split("/")[0];
+var isNotPackageJson = (name) => name !== "package.json";
+var toValidPackageName = (name) => name.trim().toLowerCase().replace(/\s+/g, "-").replace(/^[._]/, "").replace(/[^a-z0-9-~]+/g, "-");
+var installInstructionsByPkgManager = (pkgManager) => {
+  const instructions = {
+    yarn: "  yarn \n   yarn dev",
+    default: `  ${pkgManager} install \n  ${pkgManager} run dev`
+  };
+  return instructions[pkgManager] ?? instructions.default;
+};
+var getTargetPath = (targetPath, fileName) => import_path2.default.join(targetPath, RENAMABLE_FILES_MAP[fileName] ?? fileName);
+
+// src/templates.ts
 var TEMPLATES = [
   {
     name: "react",
@@ -5031,22 +5047,7 @@ var TEMPLATES = [
     ]
   }
 ];
-
-// src/utils.ts
-var isValidPkgName = (name) => /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(name);
-var getPkgManagerFromUserAgent = (userAgent) => userAgent?.split(" ")[0]?.split("/")[0];
-var isNotPackageJson = (name) => name !== "package.json";
-var toValidPackageName = (name) => name.trim().toLowerCase().replace(/\s+/g, "-").replace(/^[._]/, "").replace(/[^a-z0-9-~]+/g, "-");
-var installInstructionsByPkgManager = (pkgManager) => {
-  const instructions = {
-    yarn: `  yarn 
-   yarn dev`,
-    default: `  ${pkgManager} install 
-  ${pkgManager} run dev`
-  };
-  return instructions[pkgManager] ?? instructions.default;
-};
-var getTargetPath = (targetPath, fileName) => import_path2.default.join(targetPath, RENAMABLE_FILES_MAP[fileName] ?? fileName);
+var TEMPLATE_VARIANTS = TEMPLATES.flatMap(({ variants }) => variants);
 
 // src/index.ts
 var cwd = process.cwd();
@@ -5054,7 +5055,6 @@ var init = async () => {
   const state = {
     targetDir: ""
   };
-  const templates = TEMPLATES.flatMap((f) => f.variants);
   let steps = [
     {
       type: "text",
@@ -5084,7 +5084,7 @@ var init = async () => {
       name: "template",
       message: reset("Select a template:"),
       initial: 0,
-      choices: templates.map((template) => ({
+      choices: TEMPLATE_VARIANTS.map((template) => ({
         title: template.color(template.name),
         value: template
       }))
